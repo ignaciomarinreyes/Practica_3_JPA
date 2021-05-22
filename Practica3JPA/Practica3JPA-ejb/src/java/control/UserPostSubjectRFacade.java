@@ -35,7 +35,6 @@ public class UserPostSubjectRFacade extends AbstractFacade<UserPostSubjectR> {
 
     public List findPostsofFollowedSubjectsByUser(User user) {
         List<UserPostSubjectR> userPostSubjectRList = em.createQuery("select DISTINCT usp FROM UserPostSubjectR usp JOIN usp.user u WHERE usp.subject IN (u.subjectCollection)").getResultList();
-        System.out.println("este" + userPostSubjectRList.size());
         List<Post> posts = getListPosts(userPostSubjectRList);
         return posts;
     }

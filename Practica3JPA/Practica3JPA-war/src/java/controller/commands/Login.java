@@ -23,14 +23,11 @@ public class Login extends FrontCommand {
         } catch (NamingException ex) {
             ex.printStackTrace();
         }
-        System.out.println("llega");
         if ((User) request.getSession().getAttribute("user") == null) {
             List<User> user = userFacade.findByNicknameAndPassword(request.getParameter("nickname"), request.getParameter("password"));
             if (user.size() != 0) {
-                            System.out.println("llega2");
                 request.getSession().setAttribute("user", user.get(0));
                 List<Post> postFollowedSubjectByUser = userPostSubjectRFacade.findPostsofFollowedSubjectsByUser((User) request.getSession().getAttribute("user"));
-                System.out.println(postFollowedSubjectByUser.get(0).getTitle());
                 request.setAttribute("PostsFollowedSubjectsByUser", postFollowedSubjectByUser);
                 forward("/MainFrame.jsp");
             } else {
