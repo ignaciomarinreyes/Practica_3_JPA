@@ -5,6 +5,8 @@ import entities.User;
 import control.UserFacade;
 import entities.Post;
 import java.util.List;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 
 public class Login extends FrontCommand {
 
@@ -13,10 +15,12 @@ public class Login extends FrontCommand {
 
     @Override
     public void process() {
-        userFacade = new UserFacade();
-        postFacade = new PostFacade();
-        List<Post> postst = postFacade.findAll();
-        System.out.println(postst.size());
+        try {
+            userFacade = InitialContext.doLookup("java:global/Practica3JPA/Practica3JPA-ejb/UserFacade!control.UserFacade");
+            postFacade = InitialContext.doLookup("java:global/Practica3JPA/Practica3JPA-ejb/PostFacade!control.PostFacade");
+        } catch (NamingException ex) {
+            ex.printStackTrace();
+        }
         if ((User) request.getSession().getAttribute("user") == null) {
             List<User> user = userFacade.findByNicknameAndPassword(request.getParameter("nickname"), request.getParameter("password"));
             if (user.size() != 0) {

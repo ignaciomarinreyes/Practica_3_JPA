@@ -31,13 +31,7 @@ public class UserFacade extends AbstractFacade<User> {
     }
     
     public List findByNicknameAndPassword(String nickname, String password){
-        System.out.println("LLEGA");
-        System.out.println(em == null);
-        return em
-                .createQuery("select u from User u where u.nickname = :nickname AND u.password = :password")
-                .setParameter("nickname", nickname)
-                .setParameter("password", password)
-                .getResultList();
+        return em.createQuery("select u from User u where u.nickname = :nickname AND u.password = :password").setParameter("nickname", nickname).setParameter("password", password).getResultList();
     }
     
 }
