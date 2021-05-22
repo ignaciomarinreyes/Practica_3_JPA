@@ -19,8 +19,8 @@ public class ShowPostsFollowedSubject extends FrontCommand {
             ex.printStackTrace();
         }
         postFacade = new PostFacade();
-        List<Post> posts = postFacade.findPostsFollowedSubject((User) request.getSession().getAttribute("user"));
-        request.setAttribute("PostsFollowedSubjectsByUser", posts);
+        //List<Post> posts = postFacade.findPostsFollowedSubject((User) request.getSession().getAttribute("user"));
+        //request.setAttribute("PostsFollowedSubjectsByUser", posts);
         forward("/MainFrame.jsp");
     }
 

@@ -63,6 +63,8 @@ public class Subject implements Serializable {
     private Collection<User> userCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "subject")
     private Collection<Post> postCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "subject")
+    private Collection<UserPostSubjectR> userPostSubjectRCollection;
     @JoinColumn(name = "DEGREE", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Degree degree;
@@ -126,6 +128,15 @@ public class Subject implements Serializable {
 
     public void setPostCollection(Collection<Post> postCollection) {
         this.postCollection = postCollection;
+    }
+
+    @XmlTransient
+    public Collection<UserPostSubjectR> getUserPostSubjectRCollection() {
+        return userPostSubjectRCollection;
+    }
+
+    public void setUserPostSubjectRCollection(Collection<UserPostSubjectR> userPostSubjectRCollection) {
+        this.userPostSubjectRCollection = userPostSubjectRCollection;
     }
 
     public Degree getDegree() {

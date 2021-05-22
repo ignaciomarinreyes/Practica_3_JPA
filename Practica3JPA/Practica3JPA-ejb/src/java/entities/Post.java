@@ -80,6 +80,8 @@ public class Post implements Serializable {
     @ManyToOne(optional = false)
     private User user;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
+    private Collection<UserPostSubjectR> userPostSubjectRCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
     private Collection<Comment> commentCollection;
 
     public Post() {
@@ -158,6 +160,15 @@ public class Post implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @XmlTransient
+    public Collection<UserPostSubjectR> getUserPostSubjectRCollection() {
+        return userPostSubjectRCollection;
+    }
+
+    public void setUserPostSubjectRCollection(Collection<UserPostSubjectR> userPostSubjectRCollection) {
+        this.userPostSubjectRCollection = userPostSubjectRCollection;
     }
 
     @XmlTransient

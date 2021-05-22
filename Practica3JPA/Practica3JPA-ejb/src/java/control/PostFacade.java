@@ -6,8 +6,6 @@
 package control;
 
 import entities.Post;
-import entities.User;
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -29,11 +27,6 @@ public class PostFacade extends AbstractFacade<Post> {
 
     public PostFacade() {
         super(Post.class);
-    }
-    
-    public List findPostsFollowedSubject(User user){
-        User userDB = (User) em.createQuery("select u from User u where u.id = :idUser").setParameter("idUser", user.getId()).getResultList().get(0);
-        return (List) userDB.getPostCollection();
     }
     
 }
