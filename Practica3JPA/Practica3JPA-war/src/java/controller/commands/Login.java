@@ -1,11 +1,9 @@
 package controller.commands;
 
-import control.PostFacade;
 import entities.User;
 import control.UserFacade;
-import control.UserPostSubjectRFacade;
+import control.UserPostSubjectPublicationrelationFacade;
 import entities.Post;
-import entities.UserPostSubjectR;
 import java.util.List;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -13,13 +11,13 @@ import javax.naming.NamingException;
 public class Login extends FrontCommand {
 
     private UserFacade userFacade;
-    private UserPostSubjectRFacade userPostSubjectRFacade;
+    private UserPostSubjectPublicationrelationFacade userPostSubjectPublicationrelationFacade;
 
     @Override
     public void process() {
         try {
             userFacade = InitialContext.doLookup("java:global/Practica3JPA/Practica3JPA-ejb/UserFacade!control.UserFacade");
-            userPostSubjectRFacade = InitialContext.doLookup("java:global/Practica3JPA/Practica3JPA-ejb/UserPostSubjectRFacade!control.UserPostSubjectRFacade");
+            userPostSubjectPublicationrelationFacade = InitialContext.doLookup("java:global/Practica3JPA/Practica3JPA-ejb/UserPostSubjectPublicationrelationFacade!control.UserPostSubjectPublicationrelationFacade");
         } catch (NamingException ex) {
             ex.printStackTrace();
         }
@@ -27,7 +25,7 @@ public class Login extends FrontCommand {
             List<User> user = userFacade.findByNicknameAndPassword(request.getParameter("nickname"), request.getParameter("password"));
             if (user.size() != 0) {
                 request.getSession().setAttribute("user", user.get(0));
-                List<Post> postFollowedSubjectByUser = userPostSubjectRFacade.findPostsofFollowedSubjectsByUser((User) request.getSession().getAttribute("user"));
+                List<Post> postFollowedSubjectByUser = userPostSubjectPublicationrelationFacade.findPostsofFollowedSubjectsByUser((User) request.getSession().getAttribute("user"));
                 request.setAttribute("PostsFollowedSubjectsByUser", postFollowedSubjectByUser);
                 forward("/MainFrame.jsp");
             } else {

@@ -7,7 +7,7 @@ package control;
 
 import entities.Post;
 import entities.User;
-import entities.UserPostSubjectR;
+import entities.UserPostSubjectPublicationrelation;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -19,7 +19,7 @@ import javax.persistence.PersistenceContext;
  * @author ignacio
  */
 @Stateless
-public class UserPostSubjectRFacade extends AbstractFacade<UserPostSubjectR> {
+public class UserPostSubjectPublicationrelationFacade extends AbstractFacade<UserPostSubjectPublicationrelation> {
 
     @PersistenceContext(unitName = "Practica3JPA-ejbPU")
     private EntityManager em;
@@ -29,19 +29,19 @@ public class UserPostSubjectRFacade extends AbstractFacade<UserPostSubjectR> {
         return em;
     }
 
-    public UserPostSubjectRFacade() {
-        super(UserPostSubjectR.class);
+    public UserPostSubjectPublicationrelationFacade() {
+        super(UserPostSubjectPublicationrelation.class);
     }
 
     public List findPostsofFollowedSubjectsByUser(User user) {
-        List<UserPostSubjectR> userPostSubjectRList = em.createQuery("select DISTINCT usp FROM UserPostSubjectR usp JOIN usp.user u WHERE usp.subject IN (u.subjectCollection)").getResultList();
+        List<UserPostSubjectPublicationrelation> userPostSubjectRList = em.createQuery("select DISTINCT usp FROM UserPostSubjectPublicationrelation usp JOIN usp.user u WHERE usp.subject IN (u.subjectCollection)").getResultList();
         List<Post> posts = getListPosts(userPostSubjectRList);
         return posts;
     }
 
-    private List<Post> getListPosts(List<UserPostSubjectR> userPostSubjectRList) {
+    private List<Post> getListPosts(List<UserPostSubjectPublicationrelation> userPostSubjectRList) {
         List<Post> postsFollowed = new ArrayList<Post>();
-        for (UserPostSubjectR UserPostSubjectR : userPostSubjectRList) {
+        for (UserPostSubjectPublicationrelation UserPostSubjectR : userPostSubjectRList) {
             postsFollowed.add(UserPostSubjectR.getPost());
         }
         return postsFollowed;

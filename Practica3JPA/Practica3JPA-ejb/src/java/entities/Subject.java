@@ -6,6 +6,7 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -56,15 +57,15 @@ public class Subject implements Serializable {
     @NotNull
     @Column(name = "COURSE")
     private int course;
-    @JoinTable(name = "USER_SUBJECT_R", joinColumns = {
+    @JoinTable(name = "USER_SUBJECT_FOLLOWEDRELATION", joinColumns = {
         @JoinColumn(name = "SUBJECTID", referencedColumnName = "ID")}, inverseJoinColumns = {
         @JoinColumn(name = "USERID", referencedColumnName = "ID")})
     @ManyToMany
     private Collection<User> userCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "subject")
-    private Collection<Post> postCollection;
+    private Collection<UserPostSubjectPublicationrelation> userPostSubjectPublicationrelationCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "subject")
-    private Collection<UserPostSubjectR> userPostSubjectRCollection;
+    private Collection<Post> postCollection;
     @JoinColumn(name = "DEGREE", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Degree degree;
@@ -80,6 +81,13 @@ public class Subject implements Serializable {
 
     public Subject(Integer id) {
         this.id = id;
+    }
+
+    public void addUserPostSubjectPublicationrelationCollection(UserPostSubjectPublicationrelation userPostSubjectPublicationrelation) {
+        if (userPostSubjectPublicationrelationCollection == null) {
+            userPostSubjectPublicationrelationCollection = new ArrayList<UserPostSubjectPublicationrelation>();
+        }
+        userPostSubjectPublicationrelationCollection.add(userPostSubjectPublicationrelation);
     }
 
     public Subject(Integer id, String name, int course) {
@@ -122,21 +130,21 @@ public class Subject implements Serializable {
     }
 
     @XmlTransient
+    public Collection<UserPostSubjectPublicationrelation> getUserPostSubjectPublicationrelationCollection() {
+        return userPostSubjectPublicationrelationCollection;
+    }
+
+    public void setUserPostSubjectPublicationrelationCollection(Collection<UserPostSubjectPublicationrelation> userPostSubjectPublicationrelationCollection) {
+        this.userPostSubjectPublicationrelationCollection = userPostSubjectPublicationrelationCollection;
+    }
+
+    @XmlTransient
     public Collection<Post> getPostCollection() {
         return postCollection;
     }
 
     public void setPostCollection(Collection<Post> postCollection) {
         this.postCollection = postCollection;
-    }
-
-    @XmlTransient
-    public Collection<UserPostSubjectR> getUserPostSubjectRCollection() {
-        return userPostSubjectRCollection;
-    }
-
-    public void setUserPostSubjectRCollection(Collection<UserPostSubjectR> userPostSubjectRCollection) {
-        this.userPostSubjectRCollection = userPostSubjectRCollection;
     }
 
     public Degree getDegree() {
@@ -187,5 +195,5 @@ public class Subject implements Serializable {
     public String toString() {
         return "entities.Subject[ id=" + id + " ]";
     }
-    
+
 }

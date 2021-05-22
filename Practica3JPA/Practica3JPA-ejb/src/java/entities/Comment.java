@@ -50,7 +50,7 @@ public class Comment implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "DATE_")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date date;
     @JoinColumn(name = "POST", referencedColumnName = "ID")
     @ManyToOne(optional = false)

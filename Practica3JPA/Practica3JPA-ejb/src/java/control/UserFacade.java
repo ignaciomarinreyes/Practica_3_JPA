@@ -30,7 +30,7 @@ public class UserFacade extends AbstractFacade<User> {
         super(User.class);
     }
 
-    public List findByNicknameAndPassword(String nickname, String password) {
+    public List<User> findByNicknameAndPassword(String nickname, String password) {
         return em.createQuery("select u from User u where u.nickname = :nickname AND u.password = :password").setParameter("nickname", nickname).setParameter("password", password).getResultList();
     }
 

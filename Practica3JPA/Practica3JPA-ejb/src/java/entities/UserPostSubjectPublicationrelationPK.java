@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
  * @author ignacio
  */
 @Embeddable
-public class UserPostSubjectRPK implements Serializable {
+public class UserPostSubjectPublicationrelationPK implements Serializable {
 
     @Basic(optional = false)
     @NotNull
@@ -31,10 +31,10 @@ public class UserPostSubjectRPK implements Serializable {
     @Column(name = "SUBJECTID")
     private int subjectid;
 
-    public UserPostSubjectRPK() {
+    public UserPostSubjectPublicationrelationPK() {
     }
 
-    public UserPostSubjectRPK(int userid, int postid, int subjectid) {
+    public UserPostSubjectPublicationrelationPK(int userid, int postid, int subjectid) {
         this.userid = userid;
         this.postid = postid;
         this.subjectid = subjectid;
@@ -76,10 +76,10 @@ public class UserPostSubjectRPK implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof UserPostSubjectRPK)) {
+        if (!(object instanceof UserPostSubjectPublicationrelationPK)) {
             return false;
         }
-        UserPostSubjectRPK other = (UserPostSubjectRPK) object;
+        UserPostSubjectPublicationrelationPK other = (UserPostSubjectPublicationrelationPK) object;
         if (this.userid != other.userid) {
             return false;
         }
@@ -94,7 +94,7 @@ public class UserPostSubjectRPK implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.UserPostSubjectRPK[ userid=" + userid + ", postid=" + postid + ", subjectid=" + subjectid + " ]";
+        return "entities.UserPostSubjectPublicationrelationPK[ userid=" + userid + ", postid=" + postid + ", subjectid=" + subjectid + " ]";
     }
     
 }

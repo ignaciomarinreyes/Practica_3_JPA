@@ -2,6 +2,7 @@ package controller.commands;
 
 import control.PostFacade;
 import control.SubjectFacade;
+import entities.Subject;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
@@ -19,7 +20,8 @@ public class ShowPostsSubject extends FrontCommand {
             ex.printStackTrace();
         }
         request.setAttribute("PostBySubject", postFacade.findPostsBySubject(new Integer(request.getParameter("subjects"))));
-        request.setAttribute("subjectChoosen", subjectFacade.find(new Integer(request.getParameter("subjects"))));
+        Subject subject = subjectFacade.find(new Integer(request.getParameter("subjects")));
+        request.getSession().setAttribute("subjectChoosen", subject);
         forward("/ShowPostsSubject.jsp");
     }
 

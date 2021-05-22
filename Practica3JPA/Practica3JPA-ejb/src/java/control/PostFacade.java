@@ -7,7 +7,6 @@ package control;
 
 import entities.Post;
 import entities.User;
-import entities.UserPostSubjectR;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -39,5 +38,4 @@ public class PostFacade extends AbstractFacade<Post> {
     public List<Post> findPostsBySubject(Integer idSubject) {
         return em.createQuery("select p FROM Post p WHERE p.subject.id = :idSubject").setParameter("idSubject", idSubject).getResultList();
     }
-    
 }

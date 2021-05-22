@@ -6,6 +6,7 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -73,6 +74,8 @@ public class User implements Serializable {
     private Collection<Post> postCollection;
     @ManyToMany(mappedBy = "userCollection")
     private Collection<Subject> subjectCollection;
+    @ManyToMany(mappedBy = "userCollection1")
+    private Collection<Post> postCollection1;
     @JoinColumn(name = "ADDRESS", referencedColumnName = "ID")
     @OneToOne(optional = false)
     private Address address;
@@ -86,9 +89,9 @@ public class User implements Serializable {
     @ManyToOne(optional = false)
     private University university;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private Collection<Post> postCollection1;
+    private Collection<UserPostSubjectPublicationrelation> userPostSubjectPublicationrelationCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private Collection<UserPostSubjectR> userPostSubjectRCollection;
+    private Collection<Post> myPostsCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "teacher")
     private Collection<Subject> subjectCollection1;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
@@ -99,6 +102,20 @@ public class User implements Serializable {
 
     public User(Integer id) {
         this.id = id;
+    }
+    
+    public void addUserPostSubjectPublicationrelationCollection(UserPostSubjectPublicationrelation userPostSubjectPublicationrelation){
+        if(userPostSubjectPublicationrelationCollection == null){
+            userPostSubjectPublicationrelationCollection = new ArrayList<UserPostSubjectPublicationrelation>();
+        }
+        userPostSubjectPublicationrelationCollection.add(userPostSubjectPublicationrelation);
+    }
+    
+    public void addMyPostsCollection(Post post){
+        if(myPostsCollection == null){
+            myPostsCollection = new ArrayList<Post>();
+        }
+        myPostsCollection.add(post);
     }
 
     public User(Integer id, String nickname, String password, String name, String surname) {
@@ -167,6 +184,15 @@ public class User implements Serializable {
         this.subjectCollection = subjectCollection;
     }
 
+    @XmlTransient
+    public Collection<Post> getPostCollection1() {
+        return postCollection1;
+    }
+
+    public void setPostCollection1(Collection<Post> postCollection1) {
+        this.postCollection1 = postCollection1;
+    }
+
     public Address getAddress() {
         return address;
     }
@@ -200,21 +226,21 @@ public class User implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Post> getPostCollection1() {
-        return postCollection1;
+    public Collection<UserPostSubjectPublicationrelation> getUserPostSubjectPublicationrelationCollection() {
+        return userPostSubjectPublicationrelationCollection;
     }
 
-    public void setPostCollection1(Collection<Post> postCollection1) {
-        this.postCollection1 = postCollection1;
+    public void setUserPostSubjectPublicationrelationCollection(Collection<UserPostSubjectPublicationrelation> userPostSubjectPublicationrelationCollection) {
+        this.userPostSubjectPublicationrelationCollection = userPostSubjectPublicationrelationCollection;
     }
 
     @XmlTransient
-    public Collection<UserPostSubjectR> getUserPostSubjectRCollection() {
-        return userPostSubjectRCollection;
+    public Collection<Post> getPostCollection2() {
+        return myPostsCollection;
     }
 
-    public void setUserPostSubjectRCollection(Collection<UserPostSubjectR> userPostSubjectRCollection) {
-        this.userPostSubjectRCollection = userPostSubjectRCollection;
+    public void setPostCollection2(Collection<Post> postCollection2) {
+        this.myPostsCollection = postCollection2;
     }
 
     @XmlTransient

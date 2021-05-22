@@ -6,6 +6,8 @@
 package entities;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -60,7 +62,7 @@ public class Post implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "DATE_")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date date;
     @Size(max = 250)
     @Column(name = "CONTENT")
@@ -68,19 +70,24 @@ public class Post implements Serializable {
     @Size(max = 30)
     @Column(name = "PATHIMAGE")
     private String pathimage;
-    @JoinTable(name = "USER_POST_R", joinColumns = {
+    @JoinTable(name = "USER_POST_LIKEDRELATION", joinColumns = {
         @JoinColumn(name = "POSTID", referencedColumnName = "ID")}, inverseJoinColumns = {
         @JoinColumn(name = "USERID", referencedColumnName = "ID")})
     @ManyToMany
     private Collection<User> userCollection;
+    @JoinTable(name = "USER_POST_FAVOURITERELATION", joinColumns = {
+        @JoinColumn(name = "POSTID", referencedColumnName = "ID")}, inverseJoinColumns = {
+        @JoinColumn(name = "USERID", referencedColumnName = "ID")})
+    @ManyToMany
+    private Collection<User> userCollection1;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
+    private Collection<UserPostSubjectPublicationrelation> userPostSubjectPublicationrelationCollection;
     @JoinColumn(name = "SUBJECT", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Subject subject;
     @JoinColumn(name = "USER_", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private User user;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
-    private Collection<UserPostSubjectR> userPostSubjectRCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
     private Collection<Comment> commentCollection;
 
@@ -91,7 +98,23 @@ public class Post implements Serializable {
         this.id = id;
     }
 
-    public Post(Integer id, String title, Date date) {
+    public void addUserPostSubjectPublicationrelationCollection(UserPostSubjectPublicationrelation userPostSubjectPublicationrelation) {
+        if (userPostSubjectPublicationrelationCollection == null) {
+            userPostSubjectPublicationrelationCollection = new ArrayList<UserPostSubjectPublicationrelation>();
+        }
+        userPostSubjectPublicationrelationCollection.add(userPostSubjectPublicationrelation);
+    }
+
+    public Post(String title, Timestamp date, String content, String pathimage, Subject subject, User user) {
+        this.title = title;
+        this.date = date;
+        this.content = content;
+        this.pathimage = pathimage;
+        this.subject = subject;
+        this.user = user;
+    }
+
+    public Post(Integer id, String title, Timestamp date) {
         this.id = id;
         this.title = title;
         this.date = date;
@@ -117,7 +140,7 @@ public class Post implements Serializable {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(Timestamp date) {
         this.date = date;
     }
 
@@ -146,6 +169,24 @@ public class Post implements Serializable {
         this.userCollection = userCollection;
     }
 
+    @XmlTransient
+    public Collection<User> getUserCollection1() {
+        return userCollection1;
+    }
+
+    public void setUserCollection1(Collection<User> userCollection1) {
+        this.userCollection1 = userCollection1;
+    }
+
+    @XmlTransient
+    public Collection<UserPostSubjectPublicationrelation> getUserPostSubjectPublicationrelationCollection() {
+        return userPostSubjectPublicationrelationCollection;
+    }
+
+    public void setUserPostSubjectPublicationrelationCollection(Collection<UserPostSubjectPublicationrelation> userPostSubjectPublicationrelationCollection) {
+        this.userPostSubjectPublicationrelationCollection = userPostSubjectPublicationrelationCollection;
+    }
+
     public Subject getSubject() {
         return subject;
     }
@@ -160,15 +201,6 @@ public class Post implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    @XmlTransient
-    public Collection<UserPostSubjectR> getUserPostSubjectRCollection() {
-        return userPostSubjectRCollection;
-    }
-
-    public void setUserPostSubjectRCollection(Collection<UserPostSubjectR> userPostSubjectRCollection) {
-        this.userPostSubjectRCollection = userPostSubjectRCollection;
     }
 
     @XmlTransient
@@ -204,5 +236,5 @@ public class Post implements Serializable {
     public String toString() {
         return "entities.Post[ id=" + id + " ]";
     }
-    
+
 }
