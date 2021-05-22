@@ -2,6 +2,7 @@ package controller.commands;
 
 import entities.User;
 import control.PostFacade;
+import control.UserPostSubjectRFacade;
 import entities.Post;
 import java.util.List;
 import javax.naming.InitialContext;
@@ -9,18 +10,17 @@ import javax.naming.NamingException;
 
 public class ShowPostsFollowedSubject extends FrontCommand {
 
-    private PostFacade postFacade;
+    private UserPostSubjectRFacade userPostSubjectRFacade;
     
     @Override
     public void process() {
         try {
-            postFacade = InitialContext.doLookup("java:global/Practica3JPA/Practica3JPA-ejb/PostFacade!control.PostFacade");
+            userPostSubjectRFacade = InitialContext.doLookup("java:global/Practica3JPA/Practica3JPA-ejb/UserPostSubjectRFacade!control.UserPostSubjectRFacade");
         } catch (NamingException ex) {
             ex.printStackTrace();
         }
-        postFacade = new PostFacade();
-        //List<Post> posts = postFacade.findPostsFollowedSubject((User) request.getSession().getAttribute("user"));
-        //request.setAttribute("PostsFollowedSubjectsByUser", posts);
+        List<Post> postFollowedSubjectByUser = userPostSubjectRFacade.findPostsofFollowedSubjectsByUser((User) request.getSession().getAttribute("user"));
+        request.setAttribute("PostsFollowedSubjectsByUser", postFollowedSubjectByUser);
         forward("/MainFrame.jsp");
     }
 
