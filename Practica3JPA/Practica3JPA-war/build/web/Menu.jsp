@@ -74,7 +74,7 @@
                 }
                 out.println("</form>");
             }
-            if (((User) session.getAttribute("user")).getRol().getId() == 1) {
+            if (((User) session.getAttribute("user")).getRol().getId() == 3) {
 
                 out.println("<form action='ControlPanel.jsp' style='float: right; margin-right: 10px;'>");
                 if (request.getRequestURI().equals("/Practica3JPA-war/ControlPanel.jsp")) {
@@ -85,6 +85,6 @@
                 out.println("</form> ");
             }
             out.println("<span>  </span>");
-            out.println("<div style='float: right; margin-right: 10px; padding-top: 5px; background-color: white; font-size: 15pt;'>" + ((User) request.getSession().getAttribute("user")).getName() + "</div>");
+            out.println("<div style='float: right; margin-right: 10px; padding-top: 5px; background-color: #cde3f0; font-size: 18pt;'>" + ((User) request.getSession().getAttribute("user")).getName() + "</div>");
             out.println("</div>");
         %>

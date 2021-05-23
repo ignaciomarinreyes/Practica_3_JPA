@@ -10,6 +10,11 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.ParameterExpression;
+import javax.persistence.criteria.Root;
 
 /**
  *
@@ -34,4 +39,22 @@ public class UserFacade extends AbstractFacade<User> {
         return em.createQuery("select u from User u where u.nickname = :nickname AND u.password = :password").setParameter("nickname", nickname).setParameter("password", password).getResultList();
     }
 
+    public List<User> findByNameOrNicknameOrPasswordOrSurnameLikeOrderByIdDescd(String searchedValue) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<User> q = cb.createQuery(User.class);
+        Root<User> c = q.from(User.class);
+        ParameterExpression<String> p = cb.parameter(String.class);
+        q.select(c).where(
+                cb.or(
+                    cb.like(c.get("name"), p),
+                    cb.like(c.get("nickname"), p),
+                    cb.like(c.get("password"), p),
+                    cb.like(c.get("surname"), p)
+                )
+        ).orderBy(cb.desc(c.get("id")));
+        TypedQuery<User> query = em.createQuery(q);
+        query.setParameter(p, "%" + searchedValue + "%");
+        return query.getResultList();
+    }
+    
 }
