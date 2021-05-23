@@ -9,7 +9,8 @@
     </form>  
     <form action='FrontController' style='float: left; margin-right: 10px; margin-left: 10px;'>
         <input type='hidden' name='command' value='ShowStudies'>
-        <input type='hidden' name='searchDegrees' value=''>             
+        <input type='hidden' name='searchDegrees' value=''>   
+        <input type='hidden' name='page' value='1'>       
         <input value='Estudios' type='submit'>
     </form>  
     <form action='FrontController' style='float: left; margin-right: 10px;'>

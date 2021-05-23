@@ -30,8 +30,17 @@ public class DegreeFacade extends AbstractFacade<Degree> {
         super(Degree.class);
     }
 
-    public List<Degree> findByUniversityName(String searchedValue) {
-        return em.createQuery("select d from Degree d where d.name like :searchedValue OR d.university.name like :searchedValue ORDER BY d.university.name ASC").setParameter("searchedValue", "%" + searchedValue + "%").getResultList();
+    public List<Degree> findByUniversityNameRange5(String searchedValue, Integer page) {
+        return em.createQuery("select d from Degree d where d.name like :searchedValue OR d.university.name like :searchedValue ORDER BY d.university.name ASC")
+                .setParameter("searchedValue", "%" + (searchedValue == null ? "" : searchedValue) + "%")
+                .setMaxResults(5)
+                .setFirstResult((page - 1) * 5)
+                .getResultList();
     }
-    
+
+    public List<Degree> findByUniversityName(String searchedValue) {
+        return em.createQuery("select d from Degree d where d.name like :searchedValue OR d.university.name like :searchedValue ORDER BY d.university.name ASC")
+                .setParameter("searchedValue", "%" + (searchedValue == null ? "" : searchedValue) + "%")
+                .getResultList();
+    }
 }

@@ -2,6 +2,7 @@ package controller.commands;
 
 import control.DegreeFacade;
 import control.UserFacade;
+import entities.Degree;
 import entities.Rol;
 import entities.User;
 import java.util.List;
@@ -19,7 +20,15 @@ public class ShowStudies extends FrontCommand {
         } catch (NamingException ex) {
             ex.printStackTrace();
         }
-        request.setAttribute("degrees", degreeFacade.findByUniversityName(request.getParameter("searchDegrees")));
+        Integer page = new Integer(request.getParameter("page"));
+        List<Degree> degrees = degreeFacade.findByUniversityNameRange5(request.getParameter("searchDegrees"), page);
+        Double pages = Math.ceil((double) degreeFacade.findByUniversityName(request.getParameter("searchDegrees")).size() / 5);
+        request.setAttribute("degrees", degrees);
+        request.setAttribute("numberPages", pages.intValue());
+        Integer next = page + 1;
+        Integer before = page - 1;
+        request.setAttribute("next", (next == pages.intValue() + 1 ? String.valueOf(pages.intValue()) : String.valueOf(next)));
+        request.setAttribute("before", (before == 0 ? "1" : String.valueOf(before)));
         forward("/ShowStudies.jsp");
     }
 
