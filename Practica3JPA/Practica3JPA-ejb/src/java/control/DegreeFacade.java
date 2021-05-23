@@ -6,6 +6,7 @@
 package control;
 
 import entities.Degree;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,6 +28,10 @@ public class DegreeFacade extends AbstractFacade<Degree> {
 
     public DegreeFacade() {
         super(Degree.class);
+    }
+
+    public List<Degree> findByUniversityName(String searchedValue) {
+        return em.createQuery("select d from Degree d where d.name like :searchedValue OR d.university.name like :searchedValue ORDER BY d.university.name ASC").setParameter("searchedValue", "%" + searchedValue + "%").getResultList();
     }
     
 }
