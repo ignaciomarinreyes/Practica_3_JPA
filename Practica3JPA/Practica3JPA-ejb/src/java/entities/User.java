@@ -103,9 +103,16 @@ public class User implements Serializable {
     public User(Integer id) {
         this.id = id;
     }
-    
-    public void addPostCollectionFavourite(Post post){
-        if(postCollectionFavourite == null){
+
+    public void addSubjectFollowedCollection(Subject subject) {
+        if (subjectFollowedCollection == null) {
+            subjectFollowedCollection = new ArrayList<Subject>();
+        }
+        subjectFollowedCollection.add(subject);
+    }
+
+    public void addPostCollectionFavourite(Post post) {
+        if (postCollectionFavourite == null) {
             postCollectionFavourite = new ArrayList<Post>();
         }
         postCollectionFavourite.add(post);
@@ -114,16 +121,16 @@ public class User implements Serializable {
     public Collection<Post> getPostCollectionFavourite() {
         return postCollectionFavourite;
     }
- 
-    public void addUserPostSubjectPublicationrelationCollection(UserPostSubjectPublicationrelation userPostSubjectPublicationrelation){
-        if(userPostSubjectPublicationrelationCollection == null){
+
+    public void addUserPostSubjectPublicationrelationCollection(UserPostSubjectPublicationrelation userPostSubjectPublicationrelation) {
+        if (userPostSubjectPublicationrelationCollection == null) {
             userPostSubjectPublicationrelationCollection = new ArrayList<UserPostSubjectPublicationrelation>();
         }
         userPostSubjectPublicationrelationCollection.add(userPostSubjectPublicationrelation);
     }
-    
-    public void addMyPostsCollection(Post post){
-        if(myPostsCollection == null){
+
+    public void addMyPostsCollection(Post post) {
+        if (myPostsCollection == null) {
             myPostsCollection = new ArrayList<Post>();
         }
         myPostsCollection.add(post);
@@ -187,11 +194,11 @@ public class User implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Subject> getSubjectCollection() {
+    public Collection<Subject> getFollowedSubjects() {
         return subjectFollowedCollection;
     }
 
-    public void setSubjectCollection(Collection<Subject> subjectCollection) {
+    public void setFollowedSubject(Collection<Subject> subjectCollection) {
         this.subjectFollowedCollection = subjectCollection;
     }
 
@@ -296,5 +303,5 @@ public class User implements Serializable {
     public String toString() {
         return "entities.User[ id=" + id + " ]";
     }
-    
+
 }

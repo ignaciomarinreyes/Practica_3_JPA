@@ -10,9 +10,9 @@
                 out.println("</form>");
                 out.println("<span style='display: inline-block;'>" + ((Subject) request.getSession().getAttribute("subjectChoosen")).getName() + "</span>");
                 out.println("<form action='FrontController' method='GET' style='float: left; margin-right: 10px;'>");
-                out.println("<input type='hidden' name='command' value='AddFavouriteSubject'>");
+                out.println("<input type='hidden' name='command' value='FollowSubject'>");
                 out.println("<input type='hidden' name='idSubject' value='" + ((Subject) request.getSession().getAttribute("subjectChoosen")).getId() + "'>");
-                out.println("<input value='Añadir a Favoritos' type='submit' style='margin-left: 7px;'>");
+                out.println("<input value='Seguir Asignatura' type='submit' style='margin-left: 7px;'>");
                 out.println("</form> ");
             } else {
                 out.println("<input value='Buscar' style='background-color: none;' type='submit'>");
@@ -25,6 +25,10 @@
             out.println("<form action='FrontController' style='float: right; margin-right: 10px;'> ");
             out.println("<input type='hidden' name='command' value='Configuracion'> ");
             out.println("<input value='Configuración' type='submit'>");
+            out.println("</form>");
+            out.println("<form action='FrontController' style='float: right; margin-right: 10px;'> ");
+            out.println("<input type='hidden' name='command' value='ShowFollowedSubjects'> ");
+            out.println("<input value='Asignaturas Seguidas' type='submit'>");
             out.println("</form>");
             out.println("<form action='FrontController' style='float: right; margin-right: 10px;'> ");
             out.println("<input type='hidden' name='command' value='ShowFavouritePosts'> ");

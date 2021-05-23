@@ -82,6 +82,13 @@ public class Subject implements Serializable {
     public Subject(Integer id) {
         this.id = id;
     }
+    
+    public void addUserFollowedCollection(User user) {
+        if (userFollowedCollection == null) {
+            userFollowedCollection = new ArrayList<User>();
+        }
+        userFollowedCollection.add(user);
+    }       
 
     public void addUserPostSubjectPublicationrelationCollection(UserPostSubjectPublicationrelation userPostSubjectPublicationrelation) {
         if (userPostSubjectPublicationrelationCollection == null) {
