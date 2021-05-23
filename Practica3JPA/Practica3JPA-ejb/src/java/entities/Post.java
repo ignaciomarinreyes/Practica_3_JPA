@@ -74,12 +74,12 @@ public class Post implements Serializable {
         @JoinColumn(name = "POSTID", referencedColumnName = "ID")}, inverseJoinColumns = {
         @JoinColumn(name = "USERID", referencedColumnName = "ID")})
     @ManyToMany
-    private Collection<User> userCollection;
+    private Collection<User> userCollectionLike;
     @JoinTable(name = "USER_POST_FAVOURITERELATION", joinColumns = {
         @JoinColumn(name = "POSTID", referencedColumnName = "ID")}, inverseJoinColumns = {
         @JoinColumn(name = "USERID", referencedColumnName = "ID")})
     @ManyToMany
-    private Collection<User> userCollection1;
+    private Collection<User> userCollectionFavourite;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
     private Collection<UserPostSubjectPublicationrelation> userPostSubjectPublicationrelationCollection;
     @JoinColumn(name = "SUBJECT", referencedColumnName = "ID")
@@ -96,6 +96,13 @@ public class Post implements Serializable {
 
     public Post(Integer id) {
         this.id = id;
+    }
+    
+    public void addUserCollectionFavourite(User user){
+        if(userCollectionFavourite == null){
+            userCollectionFavourite = new ArrayList<User>();
+        }
+        userCollectionFavourite.add(user);
     }
 
     public void addUserPostSubjectPublicationrelationCollection(UserPostSubjectPublicationrelation userPostSubjectPublicationrelation) {
@@ -162,20 +169,20 @@ public class Post implements Serializable {
 
     @XmlTransient
     public Collection<User> getUserCollection() {
-        return userCollection;
+        return userCollectionLike;
     }
 
     public void setUserCollection(Collection<User> userCollection) {
-        this.userCollection = userCollection;
+        this.userCollectionLike = userCollection;
     }
 
     @XmlTransient
     public Collection<User> getUserCollection1() {
-        return userCollection1;
+        return userCollectionFavourite;
     }
 
     public void setUserCollection1(Collection<User> userCollection1) {
-        this.userCollection1 = userCollection1;
+        this.userCollectionFavourite = userCollection1;
     }
 
     @XmlTransient

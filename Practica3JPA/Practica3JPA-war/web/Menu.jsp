@@ -27,11 +27,11 @@
             out.println("<input value='Configuración' type='submit'>");
             out.println("</form>");
             out.println("<form action='FrontController' style='float: right; margin-right: 10px;'> ");
-            out.println("<input type='hidden' name='command' value='ShowFavouriteSubjects'> ");
-            if (request.getRequestURI().equals("/Practica3JPA-war/ShowFavouriteSubjects.jsp")) {
-                out.println("<input value='Asignaturas Favoritas' type='submit' style='background-color: #9BC1E4;'>");
+            out.println("<input type='hidden' name='command' value='ShowFavouritePosts'> ");
+            if (request.getRequestURI().equals("/Practica3JPA-war/ShowFavouritePosts.jsp")) {
+                out.println("<input value='Posts Favoritos' type='submit' style='background-color: #9BC1E4;'>");
             } else {
-                out.println("<input value='Asignaturas Favoritas' type='submit'>");
+                out.println("<input value='Posts Favoritos' type='submit'>");
             }
             out.println("</form>");
             out.println("<form action='FrontController' style='float: right; margin-right: 10px;'>");

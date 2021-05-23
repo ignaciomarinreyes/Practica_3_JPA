@@ -61,7 +61,7 @@ public class Subject implements Serializable {
         @JoinColumn(name = "SUBJECTID", referencedColumnName = "ID")}, inverseJoinColumns = {
         @JoinColumn(name = "USERID", referencedColumnName = "ID")})
     @ManyToMany
-    private Collection<User> userCollection;
+    private Collection<User> userFollowedCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "subject")
     private Collection<UserPostSubjectPublicationrelation> userPostSubjectPublicationrelationCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "subject")
@@ -119,14 +119,15 @@ public class Subject implements Serializable {
     public void setCourse(int course) {
         this.course = course;
     }
+    
 
     @XmlTransient
     public Collection<User> getUserCollection() {
-        return userCollection;
+        return userFollowedCollection;
     }
 
     public void setUserCollection(Collection<User> userCollection) {
-        this.userCollection = userCollection;
+        this.userFollowedCollection = userCollection;
     }
 
     @XmlTransient

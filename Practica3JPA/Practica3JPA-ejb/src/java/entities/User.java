@@ -70,12 +70,12 @@ public class User implements Serializable {
     @Size(min = 1, max = 30)
     @Column(name = "SURNAME")
     private String surname;
-    @ManyToMany(mappedBy = "userCollection")
-    private Collection<Post> postCollection;
-    @ManyToMany(mappedBy = "userCollection")
-    private Collection<Subject> subjectCollection;
-    @ManyToMany(mappedBy = "userCollection1")
-    private Collection<Post> postCollection1;
+    @ManyToMany(mappedBy = "userCollectionLike")
+    private Collection<Post> postCollectionLike;
+    @ManyToMany(mappedBy = "userFollowedCollection")
+    private Collection<Subject> subjectFollowedCollection;
+    @ManyToMany(mappedBy = "userCollectionFavourite")
+    private Collection<Post> postCollectionFavourite;
     @JoinColumn(name = "ADDRESS", referencedColumnName = "ID")
     @OneToOne(optional = false)
     private Address address;
@@ -104,6 +104,17 @@ public class User implements Serializable {
         this.id = id;
     }
     
+    public void addPostCollectionFavourite(Post post){
+        if(postCollectionFavourite == null){
+            postCollectionFavourite = new ArrayList<Post>();
+        }
+        postCollectionFavourite.add(post);
+    }
+
+    public Collection<Post> getPostCollectionFavourite() {
+        return postCollectionFavourite;
+    }
+ 
     public void addUserPostSubjectPublicationrelationCollection(UserPostSubjectPublicationrelation userPostSubjectPublicationrelation){
         if(userPostSubjectPublicationrelationCollection == null){
             userPostSubjectPublicationrelationCollection = new ArrayList<UserPostSubjectPublicationrelation>();
@@ -168,29 +179,29 @@ public class User implements Serializable {
 
     @XmlTransient
     public Collection<Post> getPostCollection() {
-        return postCollection;
+        return postCollectionLike;
     }
 
     public void setPostCollection(Collection<Post> postCollection) {
-        this.postCollection = postCollection;
+        this.postCollectionLike = postCollection;
     }
 
     @XmlTransient
     public Collection<Subject> getSubjectCollection() {
-        return subjectCollection;
+        return subjectFollowedCollection;
     }
 
     public void setSubjectCollection(Collection<Subject> subjectCollection) {
-        this.subjectCollection = subjectCollection;
+        this.subjectFollowedCollection = subjectCollection;
     }
 
     @XmlTransient
     public Collection<Post> getPostCollection1() {
-        return postCollection1;
+        return postCollectionFavourite;
     }
 
     public void setPostCollection1(Collection<Post> postCollection1) {
-        this.postCollection1 = postCollection1;
+        this.postCollectionFavourite = postCollection1;
     }
 
     public Address getAddress() {

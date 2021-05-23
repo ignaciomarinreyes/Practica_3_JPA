@@ -31,12 +31,7 @@
             result += "<input type='hidden' name='idPost' value='" + post.getId() + "'> ";
             result += "<input value=' + Añadir like' type='submit'>";
             result += "</form> ";
-            result += "<span class='like'>Me gusta: " + post.getUserCollection().size() + "</span>";
-            result += "<form action='FrontController' style='display: inline;' method='GET''>";
-            result += "<input type='hidden' name='command' value='AddFavouritePost'> ";
-            result += "<input type='hidden' name='idPost' value='" + post.getId() + "'> ";
-            result += "<input value=' + Añadir a favoritos' type='submit'>";
-            result += "</form> ";          
+            result += "<span class='like'>Me gusta: " + post.getUserCollection().size() + "</span>";         
         }
         return result;
     }
@@ -52,7 +47,7 @@
         <%@ include file="Header.jsp"%>    
         <%@ include file="Menu.jsp"%>    
         <div id="centerSpace">
-            <%                 out.println(printPosts((List<Post>) request.getAttribute("postsMYUser")));
+            <%                 out.println(printPosts((List<Post>) request.getAttribute("favouritePosts")));
             %>
         </div>
         <%@ include file="Footer.jsp"%> 
