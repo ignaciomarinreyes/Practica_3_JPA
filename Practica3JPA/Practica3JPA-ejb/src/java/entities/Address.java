@@ -9,6 +9,8 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -53,11 +55,8 @@ public class Address implements Serializable {
     @Size(min = 1, max = 30)
     @Column(name = "NUMBER_")
     private String number;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 30)
-    @Column(name = "CP")
-    private String cp;
+    @Embedded
+    private ZipCode cp;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 30)
@@ -79,7 +78,7 @@ public class Address implements Serializable {
         this.id = id;
         this.street = street;
         this.number = number;
-        this.cp = cp;
+        this.cp = new ZipCode(cp);
         this.autonomouscommunity = autonomouscommunity;
     }
 
@@ -107,11 +106,11 @@ public class Address implements Serializable {
         this.number = number;
     }
 
-    public String getCp() {
+    public ZipCode getCp() {
         return cp;
     }
 
-    public void setCp(String cp) {
+    public void setCp(ZipCode cp) {
         this.cp = cp;
     }
 
