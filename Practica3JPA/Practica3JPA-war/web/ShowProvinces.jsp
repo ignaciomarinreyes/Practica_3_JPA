@@ -52,7 +52,7 @@
         <%@ include file="MenuAdmin.jsp"%>
         <div id="searchMenu">
             <form action='FrontController' method='GET' style='float: left; margin-left: 10px;'>                 
-                <input type='hidden' name='command' value='NewProvince'>
+                <input type='hidden' name='command' value='ShowAddProvince'>
                 <input value='Añadir' type='submit'>
             </form> 
         </div>

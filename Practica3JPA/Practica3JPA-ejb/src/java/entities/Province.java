@@ -62,8 +62,7 @@ public class Province implements Serializable {
         this.id = id;
     }
 
-    public Province(Integer id, String name) {
-        this.id = id;
+    public Province (String name) {
         this.name = name;
     }
 
