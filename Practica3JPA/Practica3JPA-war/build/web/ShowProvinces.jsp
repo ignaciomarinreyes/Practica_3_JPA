@@ -13,23 +13,26 @@
     public static String printTable(List<Province> provinces) {
         String result = "<h3>Provincias</h3>"
                 + "<table style='width:100%'>";
-        result += "<tr><th>ID</th><th>Nombre</th><th>Comunidad Autónoma</th><th>Opciones</th></tr>";
+        result += "<tr><th>ID</th><th>Nombre</th><th>Comunidad Autónoma</th><th>Eliminar</th><th>Actualizar Nombre</th></tr>";
         for (Province province : provinces) {
             result += "<tr>"
                     + "<td>" + province.getId() + "</td>"
                     + "<td>" + province.getName() + "</td>"
                     + "<td>" + province.getAutonomouscommunity().getName() + "</td>"
                     + "<td style='text-align: center;'>"
-                        + "<form action='FrontController' style='display: inline-block;'>" 
-                            + "<input type='image' src='Images/editar.png' width='30' height='30' alt='next'>"
-                            + "<input type='hidden' name='command' value='UpdateProvince'>"
-                            + "<input type='hidden' name='idProvince' value='" + province.getId() + "'>"
-                        + "</form>"
-                        + "<form action='FrontController' style='display: inline-block;'>" 
-                            + "<input type='image' src='Images/eliminar.png' width='30' height='30' alt='next'>"
-                            + "<input type='hidden' name='command' value='DeleteProvince'>"
-                            + "<input type='hidden' name='idProvince' value='" + province.getId() + "'>"
-                        + "</form>"                            
+                    + "<form action='FrontController' style='display: inline-block;'>"
+                    + "<input type='image' src='Images/eliminar.png' width='30' height='30' alt='next'>"
+                    + "<input type='hidden' name='command' value='DeleteProvince'>"
+                    + "<input type='hidden' name='idProvince' value='" + province.getId() + "'>"
+                    + "</form>"
+                    + "</td>"
+                    + "<td style='text-align: center;'>"
+                    + "<form action='FrontController' style='display: inline-block;'>"
+                    + "<input type='hidden' name='command' value='UpdateProvince'>"
+                    + "<input type='text' name='newName'>"
+                    + "<input type='image' src='Images/editar.png' width='30' height='30' alt='next'>"
+                    + "<input type='hidden' name='idProvince' value='" + province.getId() + "'>"
+                    + "</form>"
                     + "</td>"
                     + "</tr>";
         }

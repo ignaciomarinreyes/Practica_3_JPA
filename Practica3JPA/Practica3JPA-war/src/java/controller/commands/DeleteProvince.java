@@ -15,7 +15,11 @@ public class DeleteProvince extends FrontCommand {
         } catch (NamingException ex) {
             ex.printStackTrace();
         }
-        provinceFacade.remove(provinceFacade.find(new Integer(request.getParameter("idProvince"))));
+        try{
+            provinceFacade.remove(provinceFacade.find(new Integer(request.getParameter("idProvince"))));
+        }catch(Exception e){
+            forward("/OperationFailed.jsp");
+        }
         request.setAttribute("provinces", provinceFacade.findAllNameQuery());
         forward("/ShowProvinces.jsp");
     }
