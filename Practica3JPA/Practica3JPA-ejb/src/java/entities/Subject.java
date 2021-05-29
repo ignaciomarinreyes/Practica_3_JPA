@@ -204,4 +204,13 @@ public class Subject implements Serializable {
         return "entities.Subject[ id=" + id + " ]";
     }
 
+    public Boolean isFollowedSubject(User userSession) {
+        for(User user: userFollowedCollection){
+            if(user.getId() == userSession.getId()){
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

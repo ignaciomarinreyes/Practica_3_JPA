@@ -8,12 +8,14 @@
             if (request.getRequestURI().equals("/Practica3JPA-war/ShowPostsSubject.jsp")) {
                 out.println("<input value='Buscar' style='background-color: #9BC1E4;' type='submit'>");
                 out.println("</form>");
-                out.println("<span style='display: inline-block;'>" + ((Subject) request.getSession().getAttribute("subjectChoosen")).getName() + "</span>");
-                out.println("<form action='FrontController' method='GET' style='float: left; margin-right: 10px;'>");
-                out.println("<input type='hidden' name='command' value='FollowSubject'>");
-                out.println("<input type='hidden' name='idSubject' value='" + ((Subject) request.getSession().getAttribute("subjectChoosen")).getId() + "'>");
-                out.println("<input value='Seguir Asignatura' type='submit' style='margin-left: 7px;'>");
-                out.println("</form> ");
+                out.println("<span style='display: inline-block;'>" + ((Subject) request.getSession().getAttribute("subjectChoosen")).getName() + "</span>");               
+                if(!((Boolean) request.getAttribute("followedSubject")).booleanValue()){
+                    out.println("<form action='FrontController' method='GET' style='float: left; margin-right: 10px;'>");
+                    out.println("<input type='hidden' name='command' value='FollowSubject'>");
+                    out.println("<input type='hidden' name='idSubject' value='" + ((Subject) request.getSession().getAttribute("subjectChoosen")).getId() + "'>");
+                    out.println("<input value='Seguir Asignatura' type='submit' style='margin-left: 7px;'>");
+                    out.println("</form> ");
+                }
             } else {
                 out.println("<input value='Buscar' style='background-color: none;' type='submit'>");
                 out.println("</form>");
