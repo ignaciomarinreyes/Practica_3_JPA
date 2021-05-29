@@ -43,4 +43,12 @@ public class DegreeFacade extends AbstractFacade<Degree> {
                 .setParameter("searchedValue", "%" + (searchedValue == null ? "" : searchedValue) + "%")
                 .getResultList();
     }
+
+    public void deleteByName(String name) {
+        em.createQuery("delete From Degree d Where d.name = :name").setParameter("name", name).executeUpdate();
+    }
+
+    public void updateName(String updateDegreeOld, String updatedDegreeNew) {
+        em.createQuery("update Degree d set d.name = :updatedDegreeNew where d.name = :updateDegreeOld").setParameter("updateDegreeOld", updateDegreeOld).setParameter("updatedDegreeNew", updatedDegreeNew).executeUpdate();
+    }
 }
