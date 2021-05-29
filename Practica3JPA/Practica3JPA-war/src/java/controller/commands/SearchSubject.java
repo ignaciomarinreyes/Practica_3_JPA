@@ -8,22 +8,16 @@ import javax.naming.NamingException;
 
 public class SearchSubject extends FrontCommand {
 
-    private UniversityFacade universityFacade;
     private DegreeFacade degreeFacade;
-    private SubjectFacade SubjectFacade;
 
     @Override
     public void process() {
         try {
-            universityFacade = InitialContext.doLookup("java:global/Practica3JPA/Practica3JPA-ejb/UniversityFacade!control.UniversityFacade");
             degreeFacade = InitialContext.doLookup("java:global/Practica3JPA/Practica3JPA-ejb/DegreeFacade!control.DegreeFacade");
-            SubjectFacade = InitialContext.doLookup("java:global/Practica3JPA/Practica3JPA-ejb/SubjectFacade!control.SubjectFacade");
         } catch (NamingException ex) {
             ex.printStackTrace();
         }
-        request.setAttribute("universities", universityFacade.findAll());
-        request.setAttribute("degrees", degreeFacade.findAll());
-        request.setAttribute("subjects", SubjectFacade.findAll());
+        request.setAttribute("subjects", degreeFacade.find(new Integer(request.getParameter("degrees"))).getSubjectCollection());
         forward("/SearchSubject.jsp");
     }
 }

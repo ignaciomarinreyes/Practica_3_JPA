@@ -3,7 +3,7 @@
 <%@page import="entities.User"%>
 <div id="menu">
     <form action='FrontController' method='GET' style='float: left; margin-left: 10px;'>                 
-        <input type='hidden' name='command' value='SearchSubject'>   
+        <input type='hidden' name='command' value='SearchUniversity'>   
         <%
             if (request.getRequestURI().equals("/Practica3JPA-war/ShowPostsSubject.jsp")) {
                 out.println("<input value='Buscar' style='background-color: #9BC1E4;' type='submit'>");

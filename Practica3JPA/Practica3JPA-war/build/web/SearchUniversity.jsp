@@ -14,15 +14,14 @@
         <%@ include file="Header.jsp"%>    
         <%@ include file="Menu.jsp"%>    
         <div id="centerSpace">
-            <form class='formSearch' action='FrontController' method='GET'>          
-                <select name="subjects" style="width: 400px;" required>
-                    <%
-                        for (Subject subject : (List<Subject>) request.getAttribute("subjects"))
-                            out.println("<option value='" + subject.getId() + "'>" + subject.getName() + "</option>");
-                    %> 
-                </select><br>     
-                <input type='hidden' name='command' value='ShowPostsSubject'>          
-                <input value='Buscar' type='submit'>
+            <form class='formSearch' action='FrontController' method='GET'>  
+                <select name="universities" style="width: 400px;" required>
+                    <%                        for (University university : (List<University>) request.getAttribute("universities"))
+                            out.println("<option value='" + university.getId() + "'>" + university.getName() + "</option>");
+                    %>
+                </select><br>
+                <input type='hidden' name='command' value='SearchDegree'>          
+                <input value='Siguiente' type='submit'>
             </form>
         </div>
     </body>
