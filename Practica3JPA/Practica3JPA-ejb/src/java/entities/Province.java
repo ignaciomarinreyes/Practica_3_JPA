@@ -6,9 +6,10 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,24 +18,25 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author ignacio
  */
 @Entity
-@Table(name = "ADDRESS")
+@Table(name = "PROVINCE")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Address.findAll", query = "SELECT a FROM Address a"),
-    @NamedQuery(name = "Address.findById", query = "SELECT a FROM Address a WHERE a.id = :id"),
-    @NamedQuery(name = "Address.findByStreet", query = "SELECT a FROM Address a WHERE a.street = :street"),
-    @NamedQuery(name = "Address.findByNumber", query = "SELECT a FROM Address a WHERE a.number = :number")})
-public class Address implements Serializable {
+    @NamedQuery(name = "Province.findAll", query = "SELECT p FROM Province p"),
+    @NamedQuery(name = "Province.findById", query = "SELECT p FROM Province p WHERE p.id = :id"),
+    @NamedQuery(name = "Province.findByName", query = "SELECT p FROM Province p WHERE p.name = :name")})
+public class Province implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -44,32 +46,25 @@ public class Address implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 30)
-    @Column(name = "STREET")
-    private String street;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 30)
-    @Column(name = "NUMBER_")
-    private String number;
-    @Embedded
-    private ZipCode zipCode;
-    @JoinColumn(name = "PROVINCE", referencedColumnName = "ID")
+    @Size(min = 1, max = 40)
+    @Column(name = "NAME")
+    private String name;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "province")
+    private Collection<Address> addressCollection;
+    @JoinColumn(name = "AUTONOMOUSCOMMUNITY", referencedColumnName = "ID")
     @ManyToOne(optional = false)
-    private Province province;
+    private Autonomouscommunity autonomouscommunity;
 
-    public Address() {
+    public Province() {
     }
 
-    public Address(Integer id) {
+    public Province(Integer id) {
         this.id = id;
     }
 
-    public Address(Integer id, String street, String number, String cp, String localidad) {
+    public Province(Integer id, String name) {
         this.id = id;
-        this.street = street;
-        this.number = number;
-        this.zipCode = new ZipCode(cp, localidad);
+        this.name = name;
     }
 
     public Integer getId() {
@@ -80,36 +75,29 @@ public class Address implements Serializable {
         this.id = id;
     }
 
-    public String getStreet() {
-        return street;
+    public String getName() {
+        return name;
     }
 
-    public void setStreet(String street) {
-        this.street = street;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getNumber() {
-        return number;
+    @XmlTransient
+    public Collection<Address> getAddressCollection() {
+        return addressCollection;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+    public void setAddressCollection(Collection<Address> addressCollection) {
+        this.addressCollection = addressCollection;
     }
 
-    public ZipCode getZipCode() {
-        return zipCode;
+    public Autonomouscommunity getAutonomouscommunity() {
+        return autonomouscommunity;
     }
 
-    public void setZipCode(ZipCode zipCode) {
-        this.zipCode = zipCode;
-    }
-
-    public Province getProvince() {
-        return province;
-    }
-
-    public void setProvince(Province province) {
-        this.province = province;
+    public void setAutonomouscommunity(Autonomouscommunity autonomouscommunity) {
+        this.autonomouscommunity = autonomouscommunity;
     }
 
     @Override
@@ -122,10 +110,10 @@ public class Address implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Address)) {
+        if (!(object instanceof Province)) {
             return false;
         }
-        Address other = (Address) object;
+        Province other = (Province) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -134,7 +122,7 @@ public class Address implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Address[ id=" + id + " ]";
+        return "entities.Province[ id=" + id + " ]";
     }
     
 }
