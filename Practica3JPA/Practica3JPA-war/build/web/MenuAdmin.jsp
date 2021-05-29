@@ -30,5 +30,13 @@
         <input type='hidden' name='command' value='ShowDegrees'>        
         <input value='Carreras' type='submit'>
     </form> 
+        <form action='FrontController' style='float: left; margin-right: 10px;'>
+        <input type='hidden' name='command' value='ShowProvinces'>        
+        <input value='Provincias' type='submit'>
+    </form> 
+        <form action='FrontController' style='float: left; margin-right: 10px;'>
+        <input type='hidden' name='command' value='ShowAutonomousCommunities'>        
+        <input value='Comunidades Autónomas' type='submit'>
+    </form> 
 </form> 
 </div>

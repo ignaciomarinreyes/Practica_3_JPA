@@ -6,6 +6,7 @@
 package control;
 
 import entities.Province;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,6 +28,10 @@ public class ProvinceFacade extends AbstractFacade<Province> {
 
     public ProvinceFacade() {
         super(Province.class);
+    }
+
+    public List<Province> findAllNameQuery() {
+        return em.createNamedQuery("Province.findAll").getResultList();
     }
     
 }
