@@ -14,7 +14,7 @@
         <%@ include file="Header.jsp"%>    
         <%@ include file="Menu.jsp"%>    
         <div id="centerSpace">
-            <form class='formSearch' action='FrontController' method='GET'>          
+            <form class='formSearch' action='FrontController' method='GET' style="text-align: center;">          
                 <select name="subjects" style="width: 400px;" required>
                     <%
                         for (Subject subject : (List<Subject>) request.getAttribute("subjects"))

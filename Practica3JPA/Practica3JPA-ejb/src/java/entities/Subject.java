@@ -8,6 +8,7 @@ package entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -82,13 +83,13 @@ public class Subject implements Serializable {
     public Subject(Integer id) {
         this.id = id;
     }
-    
+
     public void addUserFollowedCollection(User user) {
         if (userFollowedCollection == null) {
             userFollowedCollection = new ArrayList<User>();
         }
         userFollowedCollection.add(user);
-    }       
+    }
 
     public void addUserPostSubjectPublicationrelationCollection(UserPostSubjectPublicationrelation userPostSubjectPublicationrelation) {
         if (userPostSubjectPublicationrelationCollection == null) {
@@ -126,7 +127,6 @@ public class Subject implements Serializable {
     public void setCourse(int course) {
         this.course = course;
     }
-    
 
     @XmlTransient
     public Collection<User> getUserCollection() {
@@ -205,12 +205,22 @@ public class Subject implements Serializable {
     }
 
     public Boolean isFollowedSubject(User userSession) {
-        for(User user: userFollowedCollection){
-            if(user.getId() == userSession.getId()){
+        for (User user : userFollowedCollection) {
+            if (user.getId() == userSession.getId()) {
                 return true;
             }
         }
         return false;
+    }
+
+    public void unfollowUser(Integer idUserUnfollow) {
+        Iterator iterator = userFollowedCollection.iterator();
+        while (iterator.hasNext()) {
+            User user = (User) iterator.next();
+            if (user.getId().intValue() == idUserUnfollow.intValue()) {
+                iterator.remove();
+            }
+        }
     }
 
 }

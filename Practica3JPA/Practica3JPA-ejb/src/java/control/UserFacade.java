@@ -56,5 +56,9 @@ public class UserFacade extends AbstractFacade<User> {
         query.setParameter(p, "%" + searchedValue + "%");
         return query.getResultList();
     }
+
+    public void flush() {
+        em.flush();
+    }
     
 }

@@ -8,6 +8,8 @@ package entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -302,6 +304,16 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "entities.User[ id=" + id + " ]";
+    }
+
+    public void unfollowSubject(Integer idSubjectUnfollow) {
+        Iterator iterator = subjectFollowedCollection.iterator();
+        while(iterator.hasNext()){
+            Subject subject = (Subject) iterator.next();
+            if(subject.getId().intValue() == idSubjectUnfollow.intValue()){
+                iterator.remove();
+            }
+        }
     }
 
 }

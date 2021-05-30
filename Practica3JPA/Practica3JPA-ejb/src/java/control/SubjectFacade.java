@@ -28,5 +28,6 @@ public class SubjectFacade extends AbstractFacade<Subject> {
     public SubjectFacade() {
         super(Subject.class);
     }
+
     
 }

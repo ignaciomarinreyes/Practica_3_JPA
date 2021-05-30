@@ -12,11 +12,11 @@
         <%@ include file="Header.jsp"%>    
         <%@ include file="MenuAdmin.jsp"%>    
         <div id="centerSpace">
-            <form action='FrontController' method='GET'>
+            <form action='FrontController' method='GET' style="text-align: center;">
                 <p>Nombre: </p>
-                <input type="text" name="name" required><br>
+                <input type="text" name="name" style="width: 140px;" required><br>
                 <p>Comunidad Autónoma: </p>
-                <select width="200px" name="autonomousComunnity" required>
+                <select style="width: 140px;" name="autonomousComunnity" required>
                 <%                        
                     for(Autonomouscommunity autonomouscommunity :(List<Autonomouscommunity>)request.getAttribute("autonomousCommunity")){
                         out.println("<option value='" + autonomouscommunity.getId() + "'>" + autonomouscommunity.getName() + "</option>");

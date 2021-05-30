@@ -12,13 +12,18 @@
     public static String printTable(List<Subject> subjects) {
         String result = "<h3>Asignaturas Seguidas</h3>"
                 + "<table style='width:100%'>";
-        result += "<tr><th>ID</th><th>Nombre</th><th>Grado</th><th>Universidad</th></tr>";
+        result += "<tr><th>ID</th><th>Nombre</th><th>Grado</th><th>Universidad</th><th>Dejar de seguir</th></tr>";
         for (Subject subject : subjects) {
             result += "<tr>"
                     + "<td>" + subject.getId() + "</td>"
                     + "<td>" + subject.getName() + "</td>"
                     + "<td>" + subject.getDegree().getName() + "</td>"
                     + "<td>" + subject.getUniversity().getName() + "</td>"
+                    + "<td style='text-align: center;'><form action='FrontController' style='display: inline-block;'>"
+                    + "<input type='image' src='Images/eliminar.png' width='30' height='30' alt='next'>"
+                    + "<input type='hidden' name='command' value='UnFollowSubject'>"
+                    + "<input type='hidden' name='idFollowedSubject' value='" + subject.getId() + "'>"
+                    + "</form></td>"
                     + "</tr>";
         }
         result += "</table>";

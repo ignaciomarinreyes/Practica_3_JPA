@@ -3,8 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/Users/ignacio/GoogleDrive/Ingenieria_informatica/4_2/Arquitectura_sofware/Entregas_AS/Practica3JPA/Practica3JPA/Practica3JPA-ejb/src/java/entities/Province.java</file>
+            <file>file:/Users/ignacio/GoogleDrive/Ingenieria_informatica/4_2/Arquitectura_sofware/Entregas_AS/Practica3JPA/Practica3JPA/Practica3JPA-ejb/src/java/control/DegreeFacade.java</file>
+            <file>file:/Users/ignacio/GoogleDrive/Ingenieria_informatica/4_2/Arquitectura_sofware/Entregas_AS/Practica3JPA/Practica3JPA/Practica3JPA-ejb/src/java/control/AddressFacade.java</file>
+            <file>file:/Users/ignacio/GoogleDrive/Ingenieria_informatica/4_2/Arquitectura_sofware/Entregas_AS/Practica3JPA/Practica3JPA/Practica3JPA-ejb/src/java/control/UserFacade.java</file>
+            <file>file:/Users/ignacio/GoogleDrive/Ingenieria_informatica/4_2/Arquitectura_sofware/Entregas_AS/Practica3JPA/Practica3JPA/Practica3JPA-ejb/src/java/control/AutonomouscommunityFacade.java</file>
+            <file>file:/Users/ignacio/GoogleDrive/Ingenieria_informatica/4_2/Arquitectura_sofware/Entregas_AS/Practica3JPA/Practica3JPA/Practica3JPA-ejb/src/java/control/ProvinceFacade.java</file>
             <file>file:/Users/ignacio/GoogleDrive/Ingenieria_informatica/4_2/Arquitectura_sofware/Entregas_AS/Practica3JPA/Practica3JPA/Practica3JPA-ejb/src/java/entities/ZipCode.java</file>
+            <file>file:/Users/ignacio/GoogleDrive/Ingenieria_informatica/4_2/Arquitectura_sofware/Entregas_AS/Practica3JPA/Practica3JPA/Practica3JPA-ejb/src/java/entities/Autonomouscommunity.java</file>
             <file>file:/Users/ignacio/GoogleDrive/Ingenieria_informatica/4_2/Arquitectura_sofware/Entregas_AS/Practica3JPA/Practica3JPA/Practica3JPA-ejb/src/java/entities/Address.java</file>
+            <file>file:/Users/ignacio/GoogleDrive/Ingenieria_informatica/4_2/Arquitectura_sofware/Entregas_AS/Practica3JPA/Practica3JPA/Practica3JPA-ejb/src/java/control/AbstractFacade.java</file>
+            <file>file:/Users/ignacio/GoogleDrive/Ingenieria_informatica/4_2/Arquitectura_sofware/Entregas_AS/Practica3JPA/Practica3JPA/Practica3JPA-ejb/src/java/entities/Subject.java</file>
         </group>
     </open-files>
 </project-private>
