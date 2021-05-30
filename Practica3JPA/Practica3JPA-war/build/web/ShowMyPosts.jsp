@@ -17,6 +17,11 @@
             if (post.getPathimage() != null) {
                 result += "<div class='picture'><img src='" + post.getPathimage() + "' width='40%' height='40%'></div>";
             }
+            result += "<form action='FrontController'>";
+            result += "<input type='text' name='comment' style='width: 97%';> ";
+            result += "<input type='hidden' name='command' value='AddComment'> ";
+            result += "<input type='hidden' name='idPostComment' value='" + post.getId() + "'> ";
+            result += "</form> ";
             if (post.getCommentCollection().size() > 0) {
                 result += "<div>";
                 for (Comment comment : post.getCommentCollection()) {

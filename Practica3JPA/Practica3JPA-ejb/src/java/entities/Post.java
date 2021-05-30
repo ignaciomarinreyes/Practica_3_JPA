@@ -98,6 +98,13 @@ public class Post implements Serializable {
         this.id = id;
     }
 
+    public void addCommentCollection(Comment comment) {
+        if (commentCollection == null) {
+            commentCollection = new ArrayList<Comment>();
+        }
+        commentCollection.add(comment);
+    }
+
     public void addUserCollectionFavourite(User user) {
         if (userCollectionFavourite == null) {
             userCollectionFavourite = new ArrayList<User>();

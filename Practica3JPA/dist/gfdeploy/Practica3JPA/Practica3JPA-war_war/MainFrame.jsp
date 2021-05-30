@@ -13,9 +13,14 @@
             result += "<div class='post'><p class='subjectPost' style='border-bottom: none; padding-bottom: 0px;'>" + post.getSubject().getName() + "</p><h1>" + post.getTitle() + "</h1>"
                     + "<div class='tuser'><span>" + post.getUser().getName() + "</span><span> " + post.getDate() + "</span></div>"
                     + "<p>" + post.getContent() + "</p>";
-            if (post.getPathimage()!= null) {
+            if (post.getPathimage() != null) {
                 result += "<div class='picture'><img src='" + post.getPathimage() + "' width='40%' height='40%'></div>";
             }
+            result += "<form action='FrontController'>";
+            result += "<input type='text' name='comment' style='width: 97%';> ";
+            result += "<input type='hidden' name='command' value='AddComment'> ";
+            result += "<input type='hidden' name='idPostComment' value='" + post.getId() + "'> ";
+            result += "</form> ";
             if (post.getCommentCollection().size() > 0) {
                 result += "<div>";
                 for (Comment comment : post.getCommentCollection()) {
@@ -35,7 +40,7 @@
             result += "<input type='hidden' name='command' value='AddFavouritePost'> ";
             result += "<input type='hidden' name='idPost' value='" + post.getId() + "'> ";
             result += "<input value=' + Añadir a favoritos' type='submit'>";
-            result += "</form> "; 
+            result += "</form> ";
         }
         return result;
     }
