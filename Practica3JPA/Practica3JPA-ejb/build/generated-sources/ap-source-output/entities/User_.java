@@ -10,10 +10,11 @@ import entities.University;
 import entities.UserPostSubjectPublicationrelation;
 import javax.annotation.Generated;
 import javax.persistence.metamodel.CollectionAttribute;
+import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2021-05-30T12:40:42")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2021-05-30T13:29:01")
 @StaticMetamodel(User.class)
 public class User_ { 
 
@@ -23,7 +24,7 @@ public class User_ {
     public static volatile SingularAttribute<User, Degree> degree;
     public static volatile CollectionAttribute<User, Subject> subjectFollowedCollection;
     public static volatile CollectionAttribute<User, Post> postCollectionLike;
-    public static volatile CollectionAttribute<User, Post> postCollectionFavourite;
+    public static volatile ListAttribute<User, Post> postCollectionFavourite;
     public static volatile SingularAttribute<User, Rol> rol;
     public static volatile CollectionAttribute<User, UserPostSubjectPublicationrelation> userPostSubjectPublicationrelationCollection;
     public static volatile SingularAttribute<User, String> password;

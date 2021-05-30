@@ -10,10 +10,10 @@
         <%@ include file="Header.jsp"%>    
         <%@ include file="Menu.jsp"%>    
         <div id="centerSpace">
-            <form action='FrontController' method='GET'>
-                <p>Título: </p>
+            <form action='FrontController' method='GET' style="text-align: center;">
+                <p>Título</p>
                 <input type="text" name="title" required><br>
-                <p>Mensaje:</p>
+                <p>Mensaje</p>
                 <textarea name="content" rows="4" cols="50" required></textarea><br>
                 <button type="submit">Publicar</button>
                 <input type='hidden' id='subjects' name='subject' value='<%= request.getParameter("subject")%>'>               

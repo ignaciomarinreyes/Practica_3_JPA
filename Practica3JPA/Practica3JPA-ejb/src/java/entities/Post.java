@@ -79,7 +79,7 @@ public class Post implements Serializable {
         @JoinColumn(name = "POSTID", referencedColumnName = "ID")}, inverseJoinColumns = {
         @JoinColumn(name = "USERID", referencedColumnName = "ID")})
     @ManyToMany
-    private Collection<User> userCollectionFavourite;
+    private ArrayList<User> userCollectionFavourite;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
     private Collection<UserPostSubjectPublicationrelation> userPostSubjectPublicationrelationCollection;
     @JoinColumn(name = "SUBJECT", referencedColumnName = "ID")
@@ -181,7 +181,7 @@ public class Post implements Serializable {
         return userCollectionFavourite;
     }
 
-    public void setUserCollection1(Collection<User> userCollection1) {
+    public void setUserCollection1(ArrayList<User> userCollection1) {
         this.userCollectionFavourite = userCollection1;
     }
 
@@ -242,6 +242,10 @@ public class Post implements Serializable {
     @Override
     public String toString() {
         return "entities.Post[ id=" + id + " ]";
+    }
+
+    public void removeLastUserCollectionFavourite() {
+        userCollectionFavourite.remove(userCollectionFavourite.size() - 1);
     }
 
 }

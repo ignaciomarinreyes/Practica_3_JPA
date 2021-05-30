@@ -7,16 +7,17 @@ import entities.UserPostSubjectPublicationrelation;
 import java.util.Date;
 import javax.annotation.Generated;
 import javax.persistence.metamodel.CollectionAttribute;
+import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2021-05-30T12:40:42")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2021-05-30T13:29:01")
 @StaticMetamodel(Post.class)
 public class Post_ { 
 
     public static volatile SingularAttribute<Post, Date> date;
     public static volatile CollectionAttribute<Post, UserPostSubjectPublicationrelation> userPostSubjectPublicationrelationCollection;
-    public static volatile CollectionAttribute<Post, User> userCollectionFavourite;
+    public static volatile ListAttribute<Post, User> userCollectionFavourite;
     public static volatile SingularAttribute<Post, Subject> subject;
     public static volatile CollectionAttribute<Post, Comment> commentCollection;
     public static volatile CollectionAttribute<Post, User> userCollectionLike;

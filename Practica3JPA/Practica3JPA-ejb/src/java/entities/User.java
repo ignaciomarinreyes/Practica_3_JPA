@@ -77,7 +77,7 @@ public class User implements Serializable {
     @ManyToMany(mappedBy = "userFollowedCollection")
     private Collection<Subject> subjectFollowedCollection;
     @ManyToMany(mappedBy = "userCollectionFavourite")
-    private Collection<Post> postCollectionFavourite;
+    private ArrayList<Post> postCollectionFavourite;
     @JoinColumn(name = "ADDRESS", referencedColumnName = "ID")
     @OneToOne(optional = false)
     private Address address;
@@ -209,7 +209,7 @@ public class User implements Serializable {
         return postCollectionFavourite;
     }
 
-    public void setPostCollection1(Collection<Post> postCollection1) {
+    public void setPostCollection1(ArrayList<Post> postCollection1) {
         this.postCollectionFavourite = postCollection1;
     }
 
@@ -314,6 +314,10 @@ public class User implements Serializable {
                 iterator.remove();
             }
         }
+    }
+
+    public void removeLastPostCollectionFavourite() {
+        postCollectionFavourite.remove(postCollectionFavourite.size() - 1);
     }
 
 }
