@@ -66,18 +66,7 @@
                 }
                 out.println("</form>");
             }
-            if (request.getRequestURI().equals("/Practica3JPA-war/ShowPostsSubject.jsp")) {
-                out.println("<form action='ProgramPublish.jsp' style='float: right; margin-right: 10px;'>");
-                out.println("<input type='hidden' id='subjects' name='subject' value='" + request.getParameter("subjects") + "'> ");
-                if (request.getRequestURI().equals("/Practica3JPA-war/ProgramPublish.jsp")) {
-                    out.println("<input value='Programar publicación' type='submit' style='background-color: #9BC1E4;> ");
-                } else {
-                    out.println("<input value='Programar publicación' type='submit'>");
-                }
-                out.println("</form>");
-            }
             if (((User) session.getAttribute("user")).getRol().getId() == 3) {
-
                 out.println("<form action='ControlPanel.jsp' style='float: right; margin-right: 10px;'>");
                 if (request.getRequestURI().equals("/Practica3JPA-war/ControlPanel.jsp")) {
                     out.println("<input value='Administrador' type='submit' style='background-color: #9BC1E4;>");

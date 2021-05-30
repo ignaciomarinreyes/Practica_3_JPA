@@ -24,6 +24,10 @@
                 <input type='hidden' name='command' value='Login'> 
                 <input style="padding: 10px;" value='Iniciar Sesión' type='submit'>
             </form>
+            <form action='FrontController' method='GET' style='float: left; margin-left: 10px;'>                 
+                <input type='hidden' name='command' value='ShowAddUser'>
+                <input value='Darse de alta' type="submit">
+            </form> 
         </div>   
     </body>   
 </html>

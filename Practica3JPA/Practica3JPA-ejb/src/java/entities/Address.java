@@ -72,6 +72,12 @@ public class Address implements Serializable {
         this.zipCode = new ZipCode(cp, localidad);
     }
 
+    public Address(String street, String number, String cp, String localidad) {
+        this.street = street;
+        this.number = number;
+        this.zipCode = new ZipCode(cp, localidad);
+    }
+
     public Integer getId() {
         return id;
     }
@@ -136,5 +142,5 @@ public class Address implements Serializable {
     public String toString() {
         return "entities.Address[ id=" + id + " ]";
     }
-    
+
 }

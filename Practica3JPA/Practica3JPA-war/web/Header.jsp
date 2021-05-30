@@ -1,5 +1,5 @@
 <%
-    if (request.getSession().getAttribute("user") == null) {
+    if (request.getSession().getAttribute("user") == null && !request.getRequestURI().equals("/Practica3JPA-war/AddUser.jsp")) {
         response.sendRedirect("index.jsp");
     }
 %>

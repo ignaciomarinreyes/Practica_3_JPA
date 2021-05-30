@@ -41,6 +41,10 @@
                 <input type='hidden' name='command' value='ShowUsers'>
                 <input type='text' name='searchUsers'>
                 <input value='Buscar' type='submit'>
+            </form>
+            <form action='FrontController' method='GET' style='float: left; margin-left: 10px;'>                 
+                <input type='hidden' name='command' value='ShowAddUser'>
+                <input value='Añadir' type='submit'>
             </form> 
         </div>
         <div id="centerSpace">
