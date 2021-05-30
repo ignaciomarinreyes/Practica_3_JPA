@@ -67,7 +67,7 @@ public class Post implements Serializable {
     @Size(max = 250)
     @Column(name = "CONTENT")
     private String content;
-    @Size(max = 30)
+    @Size(max = 250)
     @Column(name = "PATHIMAGE")
     private String pathimage;
     @JoinTable(name = "USER_POST_LIKEDRELATION", joinColumns = {

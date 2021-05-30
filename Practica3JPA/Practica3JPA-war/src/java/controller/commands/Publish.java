@@ -30,7 +30,7 @@ public class Publish extends FrontCommand {
         }
         User user = (User) request.getSession().getAttribute("user"); 
         Subject subject = (Subject) request.getSession().getAttribute("subjectChoosen");
-        Post post = new Post((String) request.getParameter("title"), new Timestamp(System.currentTimeMillis()), (String) request.getParameter("content"), null, subject , user);
+        Post post = new Post((String) request.getParameter("title"), new Timestamp(System.currentTimeMillis()), (String) request.getParameter("content"), !request.getParameter("pathImage").equals("null") ? request.getParameter("pathImage"): null , subject , user);
         user.addMyPostsCollection(post);      
         postFacade.create(post);
         UserPostSubjectPublicationrelationPK userPostSubjectPublicationrelationPK = new UserPostSubjectPublicationrelationPK(user.getId(), post.getId(), subject.getId());

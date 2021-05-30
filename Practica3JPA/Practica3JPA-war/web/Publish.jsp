@@ -16,11 +16,24 @@
                 <p>Mensaje</p>
                 <textarea name="content" rows="4" cols="50" required></textarea><br>
                 <button type="submit">Publicar</button>
+                <input type="hidden" name="pathImage" value="<%= request.getAttribute("path")%>">
                 <input type='hidden' id='subjects' name='subject' value='<%= request.getParameter("subject")%>'>               
                 <input type='hidden' name='command' value='Publish'>  
             </form>
+            <%
+            if(request.getAttribute("path") == null){
+            %> 
+            <form action="UploadServlet" method="post" enctype="multipart/form-data" style="text-align: center; margin-top: 20px;">
+                <input type='file' name='image' accept="image/*" />
+                <input type = "submit" value = "Subir imagen" />
+            </form>
+            <%
+               }
+            %> 
         </div>
     </body>
 </html>
+
+
 
 

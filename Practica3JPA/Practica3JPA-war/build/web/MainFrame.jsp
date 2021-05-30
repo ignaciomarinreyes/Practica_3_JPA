@@ -14,7 +14,7 @@
                     + "<div class='tuser'><span>" + post.getUser().getName() + "</span><span> " + post.getDate() + "</span></div>"
                     + "<p>" + post.getContent() + "</p>";
             if (post.getPathimage() != null) {
-                result += "<div class='picture'><img src='" + post.getPathimage() + "' width='40%' height='40%'></div>";
+                result += "<div class='picture'><img src='" + post.getPathimage() + "' width='65%' height='65%'></div>";
             }
             result += "<form action='FrontController'>";
             result += "<input type='text' name='comment' style='width: 97%';> ";
