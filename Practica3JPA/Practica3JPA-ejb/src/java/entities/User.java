@@ -73,7 +73,7 @@ public class User implements Serializable {
     @Column(name = "SURNAME")
     private String surname;
     @ManyToMany(mappedBy = "userCollectionLike")
-    private Collection<Post> postCollectionLike;
+    private ArrayList<Post> postCollectionLike;
     @ManyToMany(mappedBy = "userFollowedCollection")
     private Collection<Subject> subjectFollowedCollection;
     @ManyToMany(mappedBy = "userCollectionFavourite")
@@ -118,6 +118,13 @@ public class User implements Serializable {
             postCollectionFavourite = new ArrayList<Post>();
         }
         postCollectionFavourite.add(post);
+    }
+
+    public void addPostCollectionLike(Post post) {
+        if (postCollectionLike == null) {
+            postCollectionLike = new ArrayList<Post>();
+        }
+        postCollectionLike.add(post);
     }
 
     public Collection<Post> getPostCollectionFavourite() {
@@ -191,7 +198,7 @@ public class User implements Serializable {
         return postCollectionLike;
     }
 
-    public void setPostCollection(Collection<Post> postCollection) {
+    public void setPostCollection(ArrayList<Post> postCollection) {
         this.postCollectionLike = postCollection;
     }
 
@@ -308,9 +315,9 @@ public class User implements Serializable {
 
     public void unfollowSubject(Integer idSubjectUnfollow) {
         Iterator iterator = subjectFollowedCollection.iterator();
-        while(iterator.hasNext()){
+        while (iterator.hasNext()) {
             Subject subject = (Subject) iterator.next();
-            if(subject.getId().intValue() == idSubjectUnfollow.intValue()){
+            if (subject.getId().intValue() == idSubjectUnfollow.intValue()) {
                 iterator.remove();
             }
         }
@@ -318,6 +325,10 @@ public class User implements Serializable {
 
     public void removeLastPostCollectionFavourite() {
         postCollectionFavourite.remove(postCollectionFavourite.size() - 1);
+    }
+
+    public void removeLastPostCollectionLike() {
+        postCollectionLike.remove(postCollectionLike.size() - 1);
     }
 
 }

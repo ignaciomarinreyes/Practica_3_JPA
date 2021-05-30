@@ -74,7 +74,7 @@ public class Post implements Serializable {
         @JoinColumn(name = "POSTID", referencedColumnName = "ID")}, inverseJoinColumns = {
         @JoinColumn(name = "USERID", referencedColumnName = "ID")})
     @ManyToMany
-    private Collection<User> userCollectionLike;
+    private ArrayList<User> userCollectionLike;
     @JoinTable(name = "USER_POST_FAVOURITERELATION", joinColumns = {
         @JoinColumn(name = "POSTID", referencedColumnName = "ID")}, inverseJoinColumns = {
         @JoinColumn(name = "USERID", referencedColumnName = "ID")})
@@ -97,12 +97,19 @@ public class Post implements Serializable {
     public Post(Integer id) {
         this.id = id;
     }
-    
-    public void addUserCollectionFavourite(User user){
-        if(userCollectionFavourite == null){
+
+    public void addUserCollectionFavourite(User user) {
+        if (userCollectionFavourite == null) {
             userCollectionFavourite = new ArrayList<User>();
         }
         userCollectionFavourite.add(user);
+    }
+
+    public void addUserCollectionLike(User user) {
+        if (userCollectionLike == null) {
+            userCollectionLike = new ArrayList<User>();
+        }
+        userCollectionLike.add(user);
     }
 
     public void addUserPostSubjectPublicationrelationCollection(UserPostSubjectPublicationrelation userPostSubjectPublicationrelation) {
@@ -172,7 +179,7 @@ public class Post implements Serializable {
         return userCollectionLike;
     }
 
-    public void setUserCollection(Collection<User> userCollection) {
+    public void setUserCollection(ArrayList<User> userCollection) {
         this.userCollectionLike = userCollection;
     }
 
@@ -246,6 +253,10 @@ public class Post implements Serializable {
 
     public void removeLastUserCollectionFavourite() {
         userCollectionFavourite.remove(userCollectionFavourite.size() - 1);
+    }
+
+    public void removeLastUserCollectionLike() {
+        userCollectionLike.remove(userCollectionLike.size() - 1);
     }
 
 }

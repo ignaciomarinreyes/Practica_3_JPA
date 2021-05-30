@@ -31,7 +31,11 @@
             result += "<input value=' + Añadir like' type='submit'>";
             result += "</form> ";
             result += "<span class='like'>Me gusta: " + post.getUserCollection().size() + "</span>";
-
+            result += "<form action='FrontController' style='display: inline;' method='GET''>";
+            result += "<input type='hidden' name='command' value='AddFavouritePost'> ";
+            result += "<input type='hidden' name='idPost' value='" + post.getId() + "'> ";
+            result += "<input value=' + Añadir a favoritos' type='submit'>";
+            result += "</form> "; 
         }
         return result;
     }
