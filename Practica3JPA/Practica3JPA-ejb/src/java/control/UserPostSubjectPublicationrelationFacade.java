@@ -6,6 +6,7 @@
 package control;
 
 import entities.Post;
+import entities.Subject;
 import entities.User;
 import entities.UserPostSubjectPublicationrelation;
 import java.util.ArrayList;
@@ -33,10 +34,18 @@ public class UserPostSubjectPublicationrelationFacade extends AbstractFacade<Use
         super(UserPostSubjectPublicationrelation.class);
     }
 
-    public List findPostsofFollowedSubjectsByUser(User user) {
-        List<UserPostSubjectPublicationrelation> userPostSubjectRList = em.createQuery("select DISTINCT usp FROM UserPostSubjectPublicationrelation usp JOIN usp.user u WHERE usp.subject IN (u.subjectFollowedCollection)").getResultList();
-        List<Post> posts = getListPosts(userPostSubjectRList);
-        return posts;
+    public List<Post> findPostsofFollowedSubjectsByUser(User user) {
+        List<UserPostSubjectPublicationrelation> allPostUserSubject = this.findAll();
+        List<Subject> followedSubject = (List<Subject>) user.getFollowedSubjects();
+        List<Post> postsofFollowedSubjectByuser = new ArrayList<Post>();
+        for(UserPostSubjectPublicationrelation userPostSubjectPublicationrelation:allPostUserSubject){
+            for(Subject subjectFollowed:followedSubject){
+                if(userPostSubjectPublicationrelation.getSubject().getId().intValue() == subjectFollowed.getId().intValue()){
+                    postsofFollowedSubjectByuser.add(userPostSubjectPublicationrelation.getPost());
+                }
+            }
+        }
+        return postsofFollowedSubjectByuser;
     }
 
     private List<Post> getListPosts(List<UserPostSubjectPublicationrelation> userPostSubjectRList) {
