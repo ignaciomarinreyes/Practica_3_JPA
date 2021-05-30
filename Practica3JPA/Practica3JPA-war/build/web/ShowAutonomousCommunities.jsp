@@ -1,3 +1,4 @@
+<%@page import="entities.Autonomouscommunity"%>
 <%@page import="entities.Degree"%>
 <%@page import="java.util.List"%>
 <%@page import="entities.User"%>
@@ -9,15 +10,14 @@
 <!DOCTYPE html>
 
 <%!
-    public static String printTable(List<Degree> degrees) {
-        String result = "<h3>Carreras</h3>"
+    public static String printTable(List<Autonomouscommunity> autonomouscommunities) {
+        String result = "<h3>Comunidades Autónomas</h3>"
                 + "<table style='width:100%'>";
-        result += "<tr><th>ID</th><th>Nombre</th><th>Universidad</th></tr>";
-        for (Degree degree : degrees) {
+        result += "<tr><th>ID</th><th>Nombre</th></tr>";
+        for (Autonomouscommunity autonomouscommunity : autonomouscommunities) {
             result += "<tr>"
-                    + "<td>" + degree.getId() + "</td>"
-                    + "<td>" + degree.getName() + "</td>"
-                    + "<td>" + degree.getUniversity().getName() + "</td>"
+                    + "<td>" + autonomouscommunity.getId() + "</td>"
+                    + "<td>" + autonomouscommunity.getName() + "</td>"
                     + "</tr>";
         }
         result += "</table>";
@@ -34,21 +34,8 @@
     <body>
         <%@ include file="Header.jsp"%>    
         <%@ include file="MenuAdmin.jsp"%>
-        <div id="searchMenu">
-            <form action='FrontController' method='GET' style='float: left; margin-left: 10px;'>                 
-                <input type='hidden' name='command' value='DeleteDegrees'>
-                <input type='text' name='deleteDegree' required>
-                <input value='Borrar' type='submit'>
-            </form> 
-            <form action='FrontController' method='GET' style='float: left; margin-left: 10px;'>                 
-                <input type='hidden' name='command' value='UpdateDegrees'>
-                <input type='text' name='updateDegreeOld' required>
-                <input type='text' name='updatedDegreeNew' required>
-                <input value='Actualizar' type='submit'>
-            </form> 
-        </div>
         <div id="centerSpace">
-            <%                out.println(printTable((List<Degree>) request.getAttribute("degrees")));
+            <%                out.println(printTable((List<Autonomouscommunity>) request.getAttribute("autonomousCommunities")));
             %>
         </div>
         <%@ include file="Footer.jsp"%> 

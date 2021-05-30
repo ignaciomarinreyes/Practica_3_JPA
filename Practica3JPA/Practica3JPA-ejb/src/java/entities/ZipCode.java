@@ -16,5 +16,15 @@ public class ZipCode {
         this.cp = cp;
         this.localidad = localidad;
     }
+
+    public String getCp() {
+        return cp;
+    }
+
+    public String getLocalidad() {
+        return localidad;
+    }
+    
+    
     
 }

@@ -11,7 +11,7 @@
         <input type='hidden' name='command' value='ShowStudies'>
         <input type='hidden' name='searchDegrees' value=''>   
         <input type='hidden' name='page' value='1'>       
-        <input value='Estudios' type='submit'>
+        <input value='Carreras' type='submit'>
     </form>  
     <form action='FrontController' style='float: left; margin-right: 10px;'>
         <input type='hidden' name='command' value='ShowUsers'>
@@ -20,23 +20,19 @@
     </form>
     <form action='FrontController' style='float: left; margin-right: 10px;'>
         <input type='hidden' name='command' value='ShowSubjects'>        
-        <input value='Asignaturas' type='submit'>
+        <input value='Asignaturas Seguidas' type='submit'>
     </form>
     <form action='FrontController' style='float: left; margin-right: 10px;'>
-        <input type='hidden' name='command' value='ShowCourses'>        
-        <input value='Cursos' type='submit'>
-    </form>
-    <form action='FrontController' style='float: left; margin-right: 10px;'>
-        <input type='hidden' name='command' value='ShowDegrees'>        
-        <input value='Carreras' type='submit'>
-    </form> 
-        <form action='FrontController' style='float: left; margin-right: 10px;'>
         <input type='hidden' name='command' value='ShowProvinces'>        
         <input value='Provincias' type='submit'>
     </form> 
-        <form action='FrontController' style='float: left; margin-right: 10px;'>
+    <form action='FrontController' style='float: left; margin-right: 10px;'>
         <input type='hidden' name='command' value='ShowAutonomousCommunities'>        
         <input value='Comunidades Autónomas' type='submit'>
-    </form> 
+    </form>
+    <form action='FrontController' style='float: left; margin-right: 10px;'>
+        <input type='hidden' name='command' value='ShowAddress'>        
+        <input value='Direcciones' type='submit'>
+    </form>
 </form> 
 </div>

@@ -10,14 +10,14 @@
 
 <%!
     public static String printTable(List<Degree> degrees) {
-        String result = "<h3>Estudios</h3>"
+        String result = "<h3>Carreras</h3>"
                 + "<table style='width:100%'>";
-        result += "<tr><th>ID</th><th>Universidad</th><th>Nombre</th></th></tr>";
+        result += "<tr><th>ID</th><th>Nombre</th><th>Universidad</th></th></tr>";
         for (Degree degree : degrees) {
             result += "<tr>"
                     + "<td>" + degree.getId() + "</td>"
-                    + "<td>" + degree.getUniversity().getName() + "</td>"
                     + "<td>" + degree.getName() + "</td>"
+                    + "<td>" + degree.getUniversity().getName() + "</td>"
                     + "</tr>";
         }
         result += "</table>";
@@ -37,9 +37,13 @@
         <div id="searchMenu">
             <form action='FrontController' method='GET' style='float: left; margin-left: 10px;'>                 
                 <input type='hidden' name='command' value='ShowStudies'>
-                <input type='text' name='searchDegrees' value='<%= (String) request.getParameter("searchDegrees") == null ? "" : (String) request.getParameter("searchDegrees") %>'>
+                <input type='text' name='searchDegrees' value='<%= (String) request.getParameter("searchDegrees") == null ? "" : (String) request.getParameter("searchDegrees")%>'>
                 <input type='hidden' name='page' value='1'>
                 <input value='Buscar' type='submit'>
+            </form>
+            <form action='FrontController' style='float: left; margin-left: 10px;'>
+                <input type='hidden' name='command' value='ShowDegrees'>        
+                <input value='Borrar o actualizar por lotes' type='submit'>
             </form> 
         </div>
         <div id="centerSpace">
@@ -50,8 +54,8 @@
             <form action='FrontController' style='display: inline-block;'>                 
                 <input type='image' src="Images/before.png" width="30" height="30" alt="next">
                 <input type='hidden' name='command' value='ShowStudies'>
-                <input type='hidden' name='searchDegrees' value='<%= (String) request.getParameter("searchDegrees") %>'>
-                <input type='hidden' name='page' value='<%= (String) request.getAttribute("before") %>'>
+                <input type='hidden' name='searchDegrees' value='<%= (String) request.getParameter("searchDegrees")%>'>
+                <input type='hidden' name='page' value='<%= (String) request.getAttribute("before")%>'>
             </form> 
             <%
                 for (int i = 1; i <= (Integer) request.getAttribute("numberPages"); i++) {
@@ -59,15 +63,15 @@
                     out.println("<input type='hidden' name='command' value='ShowStudies'> ");
                     out.println("<input type='hidden' name='page' value='" + i + "'> ");
                     out.println("<input type='hidden' name='searchDegrees' value='" + (String) request.getParameter("searchDegrees") + "'>");
-                    out.println("<input value='" + i +  "' type='submit'>");
+                    out.println("<input value='" + i + "' type='submit'>");
                     out.println("</form>");
                 }
             %>
             <form action='FrontController' style='display: inline-block;'>                 
                 <input type='image' src="Images/next.png" width="30" height="30" alt="next">
                 <input type='hidden' name='command' value='ShowStudies'>
-                <input type='hidden' name='searchDegrees' value='<%= (String) request.getParameter("searchDegrees") %>'>
-                <input type='hidden' name='page' value='<%= (String) request.getAttribute("next") %>'>
+                <input type='hidden' name='searchDegrees' value='<%= (String) request.getParameter("searchDegrees")%>'>
+                <input type='hidden' name='page' value='<%= (String) request.getAttribute("next")%>'>
             </form> 
         </div>
         <%@ include file="Footer.jsp"%> 

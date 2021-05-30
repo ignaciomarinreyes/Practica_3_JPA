@@ -1,3 +1,4 @@
+<%@page import="entities.Address"%>
 <%@page import="entities.Autonomouscommunity"%>
 <%@page import="entities.Degree"%>
 <%@page import="java.util.List"%>
@@ -10,14 +11,18 @@
 <!DOCTYPE html>
 
 <%!
-    public static String printTable(List<Autonomouscommunity> autonomouscommunities) {
-        String result = "<h3>Comunidades Autónomas</h3>"
+    public static String printTable(List<Address> addresses) {
+        String result = "<h3>Direcciones</h3>"
                 + "<table style='width:100%'>";
-        result += "<tr><th>ID</th><th>Nombre</th></tr>";
-        for (Autonomouscommunity autonomouscommunity : autonomouscommunities) {
+        result += "<tr><th>ID</th><th>Calle</th><th>Número</th><th>Código postal</th><th>Localidad</th><th>Provincia</th></tr>";
+        for (Address address : addresses) {
             result += "<tr>"
-                    + "<td>" + autonomouscommunity.getId() + "</td>"
-                    + "<td>" + autonomouscommunity.getName() + "</td>"
+                    + "<td>" + address.getId() + "</td>"
+                    + "<td>" + address.getStreet() + "</td>"
+                    + "<td>" + address.getNumber() + "</td>"
+                    + "<td>" + address.getZipCode().getCp() + "</td>"
+                    + "<td>" + address.getZipCode().getLocalidad() + "</td>"
+                    + "<td>" + address.getProvince().getName() + "</td>"
                     + "</tr>";
         }
         result += "</table>";
@@ -35,7 +40,7 @@
         <%@ include file="Header.jsp"%>    
         <%@ include file="MenuAdmin.jsp"%>
         <div id="centerSpace">
-            <%                out.println(printTable((List<Autonomouscommunity>) request.getAttribute("autonomousCommunities")));
+            <%                out.println(printTable((List<Address>) request.getAttribute("address")));
             %>
         </div>
         <%@ include file="Footer.jsp"%> 
