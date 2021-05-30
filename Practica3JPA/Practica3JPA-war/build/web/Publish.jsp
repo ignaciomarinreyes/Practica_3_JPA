@@ -12,7 +12,7 @@
         <div id="centerSpace">
             <form action='FrontController' method='GET' style="text-align: center;">
                 <p>Título</p>
-                <input type="text" name="title" required><br>
+                <input type="text" name="title" required style="width: 417px;"><br>
                 <p>Mensaje</p>
                 <textarea name="content" rows="4" cols="50" required></textarea><br>
                 <button type="submit">Publicar</button>

@@ -31,7 +31,7 @@
             result += "<input type='hidden' name='idPost' value='" + post.getId() + "'> ";
             result += "<input value=' + Añadir like' type='submit'>";
             result += "</form> ";
-            result += "<span class='like'>Me gusta: " + post.getUserCollection().size() + "</span>";         
+            result += "<span class='like'>Me gusta: " + post.getUserCollectionLike().size() + "</span>";         
         }
         return result;
     }

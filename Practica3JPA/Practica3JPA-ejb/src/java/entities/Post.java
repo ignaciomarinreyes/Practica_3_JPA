@@ -175,7 +175,7 @@ public class Post implements Serializable {
     }
 
     @XmlTransient
-    public Collection<User> getUserCollection() {
+    public Collection<User> getUserCollectionLike() {
         return userCollectionLike;
     }
 
