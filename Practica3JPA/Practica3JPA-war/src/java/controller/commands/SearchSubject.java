@@ -1,8 +1,6 @@
 package controller.commands;
 
 import control.DegreeFacade;
-import control.SubjectFacade;
-import control.UniversityFacade;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 

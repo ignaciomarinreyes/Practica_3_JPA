@@ -1,9 +1,7 @@
 package controller.commands;
 
-import control.DegreeFacade;
 import control.PostFacade;
 import control.SubjectFacade;
-import control.UniversityFacade;
 import control.UserFacade;
 import entities.Subject;
 import entities.User;

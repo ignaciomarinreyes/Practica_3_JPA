@@ -1,6 +1,5 @@
 package controller.commands;
 
-import control.AutonomouscommunityFacade;
 import control.SubjectFacade;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;

@@ -1,11 +1,8 @@
 package controller.commands;
 
 import entities.User;
-import control.PostFacade;
 import control.UserPostSubjectPublicationrelationFacade;
 import entities.Post;
-import entities.Subject;
-import entities.UserPostSubjectPublicationrelation;
 import java.util.List;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;

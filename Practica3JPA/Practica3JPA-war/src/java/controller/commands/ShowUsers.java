@@ -1,9 +1,6 @@
 package controller.commands;
 
 import control.UserFacade;
-import entities.Rol;
-import entities.User;
-import java.util.List;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 

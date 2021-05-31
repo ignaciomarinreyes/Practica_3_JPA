@@ -1,11 +1,9 @@
 package controller.commands;
 
-import control.PostFacade;
 import control.SubjectFacade;
 import control.UserFacade;
 import entities.Subject;
 import entities.User;
-import java.util.List;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 

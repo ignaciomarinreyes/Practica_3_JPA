@@ -14,7 +14,7 @@
         <div id="divlogged">
             <form action='FrontController' method='POST'>
                 <div style="padding: 10px;">
-                    <span>Nombre: </span>
+                    <span>Apodo: </span>
                     <input type='text' name='nickname' value='admin'> 
                 </div>  
                 <div style="padding: 10px;">

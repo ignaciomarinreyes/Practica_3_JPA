@@ -48,12 +48,4 @@ public class UserPostSubjectPublicationrelationFacade extends AbstractFacade<Use
         return postsofFollowedSubjectByuser;
     }
 
-    private List<Post> getListPosts(List<UserPostSubjectPublicationrelation> userPostSubjectRList) {
-        List<Post> postsFollowed = new ArrayList<Post>();
-        for (UserPostSubjectPublicationrelation UserPostSubjectR : userPostSubjectRList) {
-            postsFollowed.add(UserPostSubjectR.getPost());
-        }
-        return postsFollowed;
-    }
-
 }

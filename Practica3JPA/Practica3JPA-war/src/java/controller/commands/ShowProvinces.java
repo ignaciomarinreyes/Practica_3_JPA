@@ -1,6 +1,5 @@
 package controller.commands;
 
-import control.DegreeFacade;
 import control.ProvinceFacade;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
